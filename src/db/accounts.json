@@ -1,0 +1,258 @@
+{
+    "Data": {
+        "Account": [
+            {
+                "AccountId": "ACC_L7YC9M5NX2",
+                "bankId": 1,
+                "AccountHolderName": "Hina Abbasi",
+                "AccountHolderShortName": "Hina A.",
+                "Status": "Active",
+                "Currency": "AED",
+                "Nickname": "Personal Safe",
+                "AccountType": "Retail",
+                "AccountSubType": "Savings",
+                "StatusUpdateDateTime": "2025-10-28T05:06:51.066Z",
+                "AccountIdentifiers": [
+                    {
+                        "SchemeName": "IBAN",
+                        "Identification": "AE340827981965648516704",
+                        "Name": "Hina Abbasi"
+                    },
+                    {
+                        "SchemeName": "AccountNumber",
+                        "Identification": "9022436411",
+                        "Name": "Hina Abbasi"
+                    }
+                ],
+                "Servicer": {
+                    "SchemeName": "BICFI",
+                    "Identification": "EIBLAEAD"
+                },
+                "Description": "Multi-currency account for international transactions",
+                "OpeningDate": "2022-04-06T13:00:06.705Z"
+            },
+            {
+                "AccountId": "ACC_9ZZVIVO4ME",
+                "bankId": 1,
+                "AccountHolderName": "Hina Abbasi",
+                "AccountHolderShortName": "Hina A.",
+                "Status": "Active",
+                "Currency": "AED",
+                "Nickname": "Main Fund",
+                "AccountType": "Retail",
+                "AccountSubType": "CurrentAccount",
+                "StatusUpdateDateTime": "2024-11-11T16:06:54.213Z",
+                "AccountIdentifiers": [
+                    {
+                        "SchemeName": "IBAN",
+                        "Identification": "AE667266085256743668720",
+                        "Name": "Hina Abbasi"
+                    },
+                    {
+                        "SchemeName": "AccountNumber",
+                        "Identification": "9022436411",
+                        "Name": "Hina Abbasi"
+                    }
+                ],
+                "Servicer": {
+                    "SchemeName": "BICFI",
+                    "Identification": "RAKBAEAD"
+                },
+                "Description": "Margin account for trading activities",
+                "OpeningDate": "2011-02-01T22:55:44.640Z"
+            },
+            {
+                "AccountId": "ACC_ANE4IMEK3O",
+                "bankId": 1,
+                "AccountHolderName": "Hina Abbasi",
+                "AccountHolderShortName": "Hina A.",
+                "Status": "Active",
+                "Currency": "AED",
+                "AccountType": "Retail",
+                "AccountSubType": "CurrentAccount",
+                "StatusUpdateDateTime": "2024-11-17T02:20:16.224Z",
+                "AccountIdentifiers": [
+                    {
+                        "SchemeName": "IBAN",
+                        "Identification": "AE953545714665003889392",
+                        "Name": "Hina Abbasi"
+                    },
+                    {
+                        "SchemeName": "AccountNumber",
+                        "Identification": "0913680248",
+                        "Name": "Hina Abbasi"
+                    }
+                ],
+                "Servicer": {
+                    "SchemeName": "BICFI",
+                    "Identification": "ADCBAEAA"
+                },
+                "Description": "Merchant account for business payments",
+                "OpeningDate": "2015-06-21T17:11:13.557Z"
+            },
+            {
+                "AccountId": "ACC_QTYESCDJNC",
+                "bankId": 2,
+                "AccountHolderName": "Rodriguez, Towne and Osinski FZE",
+                "AccountHolderShortName": "Rodriguez T.",
+                "Status": "Active",
+                "Currency": "AED",
+                "AccountType": "Retail",
+                "AccountSubType": "Savings",
+                "StatusUpdateDateTime": "2025-05-20T17:17:53.969Z",
+                "AccountIdentifiers": [
+                    {
+                        "SchemeName": "IBAN",
+                        "Identification": "AE361415729263945389595",
+                        "Name": "Rodriguez, Towne and Osinski FZE"
+                    },
+                    {
+                        "SchemeName": "AccountNumber",
+                        "Identification": "4298418326",
+                        "Name": "Rodriguez, Towne and Osinski FZE"
+                    }
+                ],
+                "Servicer": {
+                    "SchemeName": "BICFI",
+                    "Identification": "NBADAEAA"
+                },
+                "Description": "High-yield savings account with competitive rates",
+                "OpeningDate": "2016-07-27T00:35:30.740Z"
+            },
+            {
+                "AccountId": "ACC_M8Z4FRISYH",
+                "bankId": 2,
+                "AccountHolderName": "Rodriguez, Towne and Osinski FZE",
+                "AccountHolderShortName": "Rodriguez T.",
+                "Status": "Active",
+                "Currency": "AED",
+                "Nickname": "Personal Safe",
+                "AccountType": "Retail",
+                "AccountSubType": "CurrentAccount",
+                "StatusUpdateDateTime": "2025-08-07T16:24:18.986Z",
+                "AccountIdentifiers": [
+                    {
+                        "SchemeName": "IBAN",
+                        "Identification": "AE765742695692973327396",
+                        "Name": "Rodriguez, Towne and Osinski FZE"
+                    },
+                    {
+                        "SchemeName": "AccountNumber",
+                        "Identification": "4034285632",
+                        "Name": "Rodriguez, Towne and Osinski FZE"
+                    }
+                ],
+                "Servicer": {
+                    "SchemeName": "BICFI",
+                    "Identification": "HBMEAEAD"
+                },
+                "Description": "Margin account for trading activities",
+                "OpeningDate": "2021-05-18T12:08:35.135Z"
+            },
+            {
+                "AccountId": "ACC_NPMMX3FGKD",
+                "bankId": 2,
+                "AccountHolderName": "Rodriguez, Towne and Osinski FZE",
+                "AccountHolderShortName": "Rodriguez T.",
+                "Status": "Active",
+                "Currency": "AED",
+                "Nickname": "Personal Safe",
+                "AccountType": "Retail",
+                "AccountSubType": "Savings",
+                "StatusUpdateDateTime": "2025-02-24T06:50:19.771Z",
+                "AccountIdentifiers": [
+                    {
+                        "SchemeName": "IBAN",
+                        "Identification": "AE980285442767106487233",
+                        "Name": "Rodriguez, Towne and Osinski FZE"
+                    }
+                ],
+                "Servicer": {
+                    "SchemeName": "BICFI",
+                    "Identification": "MASAEAD"
+                },
+                "Description": "Notice deposit account with advance notice",
+                "OpeningDate": "2010-06-17T11:09:17.631Z"
+            },
+            {
+                "AccountId": "ACC_TZGEGD16M5",
+                "bankId": 3,
+                "AccountHolderName": "Windler - Walsh FZE",
+                "AccountHolderShortName": "Windler -.",
+                "Status": "Active",
+                "Currency": "AED",
+                "Nickname": "Emergency Safe",
+                "AccountType": "Retail",
+                "AccountSubType": "Savings",
+                "StatusUpdateDateTime": "2024-11-09T13:54:05.084Z",
+                "AccountIdentifiers": [
+                    {
+                        "SchemeName": "IBAN",
+                        "Identification": "AE348628203151258197870",
+                        "Name": "Windler - Walsh FZE"
+                    }
+                ],
+                "Servicer": {
+                    "SchemeName": "BICFI",
+                    "Identification": "SHIBAEAD"
+                },
+                "Description": "Startup account for new businesses",
+                "OpeningDate": "2022-04-06T13:00:06.705Z"
+            },
+            {
+                "AccountId": "ACC_5ARILIZT7X",
+                "bankId": 3,
+                "AccountHolderName": "Windler - Walsh FZE",
+                "AccountHolderShortName": "Windler -.",
+                "Status": "Active",
+                "Currency": "AED",
+                "Nickname": "Main Fund",
+                "AccountType": "SME",
+                "AccountSubType": "CurrentAccount",
+                "StatusUpdateDateTime": "2025-07-07T10:50:23.593Z",
+                "AccountIdentifiers": [
+                    {
+                        "SchemeName": "IBAN",
+                        "Identification": "AE462701284756985831743",
+                        "Name": "Windler - Walsh FZE"
+                    },
+                    {
+                        "SchemeName": "AccountNumber",
+                        "Identification": "4428273702",
+                        "Name": "Windler - Walsh FZE"
+                    }
+                ],
+                "Servicer": {
+                    "SchemeName": "BICFI",
+                    "Identification": "HBMEAEAD"
+                },
+                "Description": "Money market account with liquidity",
+                "OpeningDate": "2011-12-19T00:17:34.623Z"
+            },
+            {
+                "AccountId": "ACC_HSEJMTDPHR",
+                "bankId": 3,
+                "AccountHolderName": "Windler - Walsh FZE",
+                "AccountHolderShortName": "Windler -.",
+                "Status": "Active",
+                "Currency": "AED",
+                "AccountType": "Corporate",
+                "AccountSubType": "CurrentAccount",
+                "StatusUpdateDateTime": "2025-02-01T00:28:49.984Z",
+                "AccountIdentifiers": [
+                    {
+                        "SchemeName": "IBAN",
+                        "Identification": "AE868901695000169823162",
+                        "Name": "Windler - Walsh FZE"
+                    }
+                ],
+                "Servicer": {
+                    "SchemeName": "BICFI",
+                    "Identification": "BOSHAEAD"
+                },
+                "Description": "Loyalty points account for rewards",
+                "OpeningDate": "2017-03-19T11:10:20.114Z"
+            }
+        ]
+    }
+}

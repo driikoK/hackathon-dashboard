@@ -1,0 +1,786 @@
+{
+  "Balance": [
+    {
+      "Amount": {
+        "Amount": "410087.59",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "PreviouslyClosedBooked",
+      "DateTime": "2025-08-22T18:53:13.012Z",
+      "AccountId": "ACC_L7YC9M5NX2"
+    },
+    {
+      "Amount": {
+        "Amount": "622041.66",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-08-21T03:57:52.297Z",
+      "AccountId": "ACC_L7YC9M5NX2"
+    },
+    {
+      "Amount": {
+        "Amount": "510347.74",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-08-27T14:55:48.362Z",
+      "AccountId": "ACC_9ZZVIVO4ME"
+    },
+    {
+      "Amount": {
+        "Amount": "83769.73",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-09-07T19:40:07.258Z",
+      "AccountId": "ACC_9ZZVIVO4ME",
+      "CreditLine": [
+        {
+          "Included": true,
+          "Type": "Emergency",
+          "Amount": {
+            "Amount": "14362.81",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "942714.37",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-08-29T08:41:31.014Z",
+      "AccountId": "ACC_9ZZVIVO4ME"
+    },
+    {
+      "Amount": {
+        "Amount": "544140.12",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "ClosingCleared",
+      "DateTime": "2025-08-30T16:34:52.183Z",
+      "AccountId": "ACC_9ZZVIVO4ME",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "16540.06",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "925753.8",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "InterimAvailable",
+      "DateTime": "2025-08-21T03:57:52.297Z",
+      "AccountId": "ACC_9ZZVIVO4ME"
+    },
+    {
+      "Amount": {
+        "Amount": "732802.9",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-08-28T19:25:15.794Z",
+      "AccountId": "ACC_9ZZVIVO4ME",
+      "CreditLine": [
+        {
+          "Included": true,
+          "Type": "Available",
+          "Amount": {
+            "Amount": "32401.84",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "48118.57",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Available",
+          "Amount": {
+            "Amount": "6556.27",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "510347.74",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-08-27T14:55:48.362Z",
+      "AccountId": "ACC_ANE4IMEK3O"
+    },
+    {
+      "Amount": {
+        "Amount": "83769.73",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-09-07T19:40:07.258Z",
+      "AccountId": "ACC_ANE4IMEK3O",
+      "CreditLine": [
+        {
+          "Included": true,
+          "Type": "Emergency",
+          "Amount": {
+            "Amount": "14362.81",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "942714.37",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-08-29T08:41:31.014Z",
+      "AccountId": "ACC_ANE4IMEK3O"
+    },
+    {
+      "Amount": {
+        "Amount": "544140.12",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "ClosingCleared",
+      "DateTime": "2025-08-30T16:34:52.183Z",
+      "AccountId": "ACC_ANE4IMEK3O",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "16540.06",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "925753.8",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "InterimAvailable",
+      "DateTime": "2025-08-21T03:57:52.297Z",
+      "AccountId": "ACC_ANE4IMEK3O"
+    },
+    {
+      "Amount": {
+        "Amount": "732802.9",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-08-28T19:25:15.794Z",
+      "AccountId": "ACC_ANE4IMEK3O",
+      "CreditLine": [
+        {
+          "Included": true,
+          "Type": "Available",
+          "Amount": {
+            "Amount": "32401.84",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "48118.57",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Available",
+          "Amount": {
+            "Amount": "6556.27",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "555045.84",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "OpeningCleared",
+      "DateTime": "2025-09-04T19:07:37.121Z",
+      "AccountId": "ACC_QTYESCDJNC"
+    },
+    {
+      "Amount": {
+        "Amount": "95339.29",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ClosingCleared",
+      "DateTime": "2025-09-04T05:41:30.970Z",
+      "AccountId": "ACC_QTYESCDJNC"
+    },
+    {
+      "Amount": {
+        "Amount": "131459.41",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "OpeningAvailable",
+      "DateTime": "2025-08-31T20:14:59.197Z",
+      "AccountId": "ACC_QTYESCDJNC",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "48576.97",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": true,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "43070.09",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "483927.13",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "ClosingBooked",
+      "DateTime": "2025-08-19T15:07:50.501Z",
+      "AccountId": "ACC_QTYESCDJNC"
+    },
+    {
+      "Amount": {
+        "Amount": "99815.83",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "InterimAvailable",
+      "DateTime": "2025-08-21T05:23:55.796Z",
+      "AccountId": "ACC_QTYESCDJNC"
+    },
+    {
+      "Amount": {
+        "Amount": "410087.59",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ForwardAvailable",
+      "DateTime": "2025-09-11T05:41:42.547Z",
+      "AccountId": "ACC_M8Z4FRISYH",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Temporary",
+          "Amount": {
+            "Amount": "37633.04",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "16317.11",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": true,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "30417.75",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "753329.83",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "InterimAvailable",
+      "DateTime": "2025-08-19T10:03:02.684Z",
+      "AccountId": "ACC_M8Z4FRISYH",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "37557.06",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": true,
+          "Type": "Emergency",
+          "Amount": {
+            "Amount": "26998.71",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": true,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "48576.97",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "298023.51",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "OpeningBooked",
+      "DateTime": "2025-09-04T05:41:30.970Z",
+      "AccountId": "ACC_M8Z4FRISYH"
+    },
+    {
+      "Amount": {
+        "Amount": "62470.38",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "ClosingBooked",
+      "DateTime": "2025-08-27T08:23:34.949Z",
+      "AccountId": "ACC_M8Z4FRISYH"
+    },
+    {
+      "Amount": {
+        "Amount": "627503.96",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "PreviouslyClosedBooked",
+      "DateTime": "2025-09-17T03:43:20.976Z",
+      "AccountId": "ACC_M8Z4FRISYH"
+    },
+    {
+      "Amount": {
+        "Amount": "627503.96",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "Information",
+      "DateTime": "2025-08-21T05:23:55.796Z",
+      "AccountId": "ACC_M8Z4FRISYH"
+    },
+    {
+      "Amount": {
+        "Amount": "689127.99",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "Expected",
+      "DateTime": "2025-09-15T19:44:12.380Z",
+      "AccountId": "ACC_NPMMX3FGKD"
+    },
+    {
+      "Amount": {
+        "Amount": "506224.75",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "InterimAvailable",
+      "DateTime": "2025-08-31T20:14:59.197Z",
+      "AccountId": "ACC_NPMMX3FGKD",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Available",
+          "Amount": {
+            "Amount": "12380.37",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Emergency",
+          "Amount": {
+            "Amount": "21923.07",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": true,
+          "Type": "Temporary",
+          "Amount": {
+            "Amount": "32094.29",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "135306.79",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "PreviouslyClosedBooked",
+      "DateTime": "2025-08-27T13:52:50.016Z",
+      "AccountId": "ACC_NPMMX3FGKD"
+    },
+    {
+      "Amount": {
+        "Amount": "894386.09",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "InterimAvailable",
+      "DateTime": "2025-09-13T14:28:24.254Z",
+      "AccountId": "ACC_NPMMX3FGKD"
+    },
+    {
+      "Amount": {
+        "Amount": "627503.96",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "OpeningCleared",
+      "DateTime": "2025-08-19T10:03:02.684Z",
+      "AccountId": "ACC_NPMMX3FGKD"
+    },
+    {
+      "Amount": {
+        "Amount": "152204.94",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "ClosingCleared",
+      "DateTime": "2025-08-31T20:59:54.105Z",
+      "AccountId": "ACC_NPMMX3FGKD"
+    },
+    {
+      "Amount": {
+        "Amount": "651834.86",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "Expected",
+      "DateTime": "2025-09-14T09:16:54.600Z",
+      "AccountId": "ACC_TZGEGD16M5"
+    },
+    {
+      "Amount": {
+        "Amount": "732802.9",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "InterimBooked",
+      "DateTime": "2025-08-30T05:14:32.378Z",
+      "AccountId": "ACC_TZGEGD16M5",
+      "CreditLine": [
+        {
+          "Included": true,
+          "Type": "Pre-Agreed",
+          "Amount": {
+            "Amount": "32131.3",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Available",
+          "Amount": {
+            "Amount": "42932.77",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Pre-Agreed",
+          "Amount": {
+            "Amount": "21666.36",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "423258.96",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "OpeningCleared",
+      "DateTime": "2025-08-23T12:55:30.635Z",
+      "AccountId": "ACC_TZGEGD16M5"
+    },
+    {
+      "Amount": {
+        "Amount": "733074.97",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "OpeningBooked",
+      "DateTime": "2025-08-19T20:18:41.246Z",
+      "AccountId": "ACC_TZGEGD16M5"
+    },
+    {
+      "Amount": {
+        "Amount": "95339.29",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "InterimAvailable",
+      "DateTime": "2025-08-22T08:29:51.528Z",
+      "AccountId": "ACC_5ARILIZT7X",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Emergency",
+          "Amount": {
+            "Amount": "37557.06",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Temporary",
+          "Amount": {
+            "Amount": "39404.28",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Temporary",
+          "Amount": {
+            "Amount": "30683.48",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "741600.29",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "OpeningBooked",
+      "DateTime": "2025-08-22T23:27:16.912Z",
+      "AccountId": "ACC_5ARILIZT7X",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "35379.06",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "544140.12",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "Information",
+      "DateTime": "2025-09-04T19:07:37.121Z",
+      "AccountId": "ACC_5ARILIZT7X"
+    },
+    {
+      "Amount": {
+        "Amount": "559043.61",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "PreviouslyClosedBooked",
+      "DateTime": "2025-09-15T21:42:40.032Z",
+      "AccountId": "ACC_5ARILIZT7X"
+    },
+    {
+      "Amount": {
+        "Amount": "131459.41",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-08-29T08:41:31.014Z",
+      "AccountId": "ACC_5ARILIZT7X"
+    },
+    {
+      "Amount": {
+        "Amount": "142563.87",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "ClosingAvailable",
+      "DateTime": "2025-09-15T10:56:52.936Z",
+      "AccountId": "ACC_5ARILIZT7X",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Pre-Agreed",
+          "Amount": {
+            "Amount": "18246.93",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "990011.5",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "InterimBooked",
+      "DateTime": "2025-08-21T07:17:29.271Z",
+      "AccountId": "ACC_5ARILIZT7X",
+      "CreditLine": [
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "32094.29",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "13096.28",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": true,
+          "Type": "Pre-Agreed",
+          "Amount": {
+            "Amount": "1821.2",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "104202.37",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "InterimAvailable",
+      "DateTime": "2025-09-05T01:56:35.544Z",
+      "AccountId": "ACC_HSEJMTDPHR"
+    },
+    {
+      "Amount": {
+        "Amount": "135306.79",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "InterimAvailable",
+      "DateTime": "2025-09-11T06:31:06.290Z",
+      "AccountId": "ACC_HSEJMTDPHR",
+      "CreditLine": [
+        {
+          "Included": true,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "12597.99",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": true,
+          "Type": "Emergency",
+          "Amount": {
+            "Amount": "25309.94",
+            "Currency": "AED"
+          }
+        },
+        {
+          "Included": false,
+          "Type": "Credit",
+          "Amount": {
+            "Amount": "24173.73",
+            "Currency": "AED"
+          }
+        }
+      ]
+    },
+    {
+      "Amount": {
+        "Amount": "793593.65",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "InterimBooked",
+      "DateTime": "2025-08-26T01:27:30.876Z",
+      "AccountId": "ACC_HSEJMTDPHR"
+    },
+    {
+      "Amount": {
+        "Amount": "834543.22",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Credit",
+      "Type": "InterimCleared",
+      "DateTime": "2025-09-06T09:41:14.921Z",
+      "AccountId": "ACC_HSEJMTDPHR"
+    },
+    {
+      "Amount": {
+        "Amount": "735880.98",
+        "Currency": "AED"
+      },
+      "CreditDebitIndicator": "Debit",
+      "Type": "PreviouslyClosedBooked",
+      "DateTime": "2025-08-22T08:29:51.528Z",
+      "AccountId": "ACC_HSEJMTDPHR"
+    }
+  ]
+}

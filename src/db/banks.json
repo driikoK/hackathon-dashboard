@@ -1,0 +1,25 @@
+{
+  "banks": [
+    {
+      "bankId": 1,
+      "name": "Bank 1",
+      "shortName": "Bank 1",
+      "logo": "🏦",
+      "color": "#0066cc"
+    },
+    {
+      "bankId": 2,
+      "name": "Bank 2",
+      "shortName": "Bank 2",
+      "logo": "🏛️",
+      "color": "#dc2626"
+    },
+    {
+      "bankId": 3,
+      "name": "Bank 3",
+      "shortName": "Bank 3",
+      "logo": "🏪",
+      "color": "#059669"
+    }
+  ]
+}
