@@ -1,68 +1,45 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
-import accountsData from '../db/accounts.json';
-import balancesData from '../db/balances.json';
-import banksData from '../db/banks.json';
-import type { Account } from '../types';
-import { getNetWorthHistory, type NetWorthHistory } from '../utils/calculateHistory';
-import NetWorthModal from '../components/NetWorthModal';
-import PageLoader from '../components/PageLoader';
+import accountsData from '../db/accounts-real.json';
 import './Accounts.css';
 
 type ViewMode = 'all' | 'bank' | 'type';
 
-interface Balance {
-  AccountId: string;
-  Type: string;
-  DateTime: string;
-  Amount: {
-    Amount: string;
-    Currency: string;
-  };
-  CreditDebitIndicator: string;
-}
-
-interface Bank {
-  bankId: number;
+interface RealAccount {
+  id: number;
   name: string;
-  logo: string;
-  color?: string;
+  current_balance: string;
+  current_balance_usd: string;
+  type: string;
+  bankId: number;
+  currencyId: number;
+  iban: string | null;
+  accountNumber: string;
+  credit_limit: string | null;
+  is_in_networth: boolean;
+  show: boolean;
+  archived: boolean;
+  currency: {
+    code: string;
+    name: string;
+  };
+  bank: {
+    name: string;
+    logo: string;
+  };
 }
 
-const Accounts = () => {
+const AccountsReal = () => {
   const navigate = useNavigate();
-  const accounts: Account[] = accountsData.Data.Account;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [netWorthHistory, setNetWorthHistory] = useState<NetWorthHistory[]>([]);
+  const accounts: RealAccount[] = accountsData.data.filter(acc => acc.show && !acc.archived);
   const [viewMode, setViewMode] = useState<ViewMode>('all');
-  const [isLoading, setIsLoading] = useState(true);
-  const [includedAccounts, setIncludedAccounts] = useState<Set<string>>(() => {
-    // Initialize with all accounts included
-    return new Set(accounts.map(acc => acc.AccountId));
+  const [includedAccounts, setIncludedAccounts] = useState<Set<number>>(() => {
+    return new Set(accounts.filter(acc => acc.is_in_networth).map(acc => acc.id));
   });
 
-  useEffect(() => {
-    // Start calculations after a brief delay to show loader first
-    const timer = setTimeout(() => {
-      const includedAccountsList = accounts.filter(acc => includedAccounts.has(acc.AccountId));
-      const history = getNetWorthHistory(includedAccountsList);
-      setNetWorthHistory(history);
-      setIsLoading(false);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!isLoading) {
-      const includedAccountsList = accounts.filter(acc => includedAccounts.has(acc.AccountId));
-      const history = getNetWorthHistory(includedAccountsList);
-      setNetWorthHistory(history);
-    }
-  }, [includedAccounts, accounts, isLoading]);
-
-  const toggleAccountInclusion = (accountId: string, e: React.MouseEvent | React.ChangeEvent<HTMLInputElement>) => {
-    e.stopPropagation(); // Prevent navigation when clicking toggle
+  const toggleAccountInclusion = (accountId: number, e: React.MouseEvent | React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
     setIncludedAccounts(prev => {
       const newSet = new Set(prev);
       if (newSet.has(accountId)) {
@@ -74,64 +51,14 @@ const Accounts = () => {
     });
   };
 
-  // Calculate balance for each account
-  const getAccountBalance = (accountId: string): number => {
-    // Priority order for balance types (most reliable first)
-    const balanceTypePriority = [
-      'ClosingAvailable',
-      'ClosingBooked',
-      'ClosingCleared',
-      'InterimAvailable',
-      'ForwardAvailable',
-      'OpeningAvailable',
-      'OpeningBooked',
-      'OpeningCleared',
-      'Expected',
-      'PreviouslyClosedBooked',
-      'Information'
-    ];
-
-    // Get all balances for the account
-    const accountBalances = balancesData.Balance.filter(
-      (b: Balance) => b.AccountId === accountId
-    );
-
-    if (accountBalances.length === 0) return 0;
-
-    // Find the most recent balance of the highest priority type available
-    let latestBalance: Balance | null = null;
-    
-    for (const type of balanceTypePriority) {
-      const balancesOfType = accountBalances.filter((b: Balance) => b.Type === type);
-      if (balancesOfType.length > 0) {
-        // Get the most recent balance of this type
-        const sorted = balancesOfType.sort(
-          (a: Balance, b: Balance) => new Date(b.DateTime).getTime() - new Date(a.DateTime).getTime()
-        );
-        latestBalance = sorted[0];
-        break;
-      }
-    }
-
-    // Fallback: if no priority type found, just get the most recent balance
-    if (!latestBalance) {
-      const sortedBalances = accountBalances.sort(
-        (a: Balance, b: Balance) => new Date(b.DateTime).getTime() - new Date(a.DateTime).getTime()
-      );
-      latestBalance = sortedBalances[0];
-    }
-
-    if (!latestBalance) return 0;
-
-    const amount = parseFloat(latestBalance.Amount.Amount);
-    return latestBalance.CreditDebitIndicator === 'Debit' ? -amount : amount;
+  const getAccountBalance = (account: RealAccount): number => {
+    return parseFloat(account.current_balance);
   };
 
-  // Calculate total networth (only for included accounts)
   const totalNetworth = accounts
-    .filter(account => includedAccounts.has(account.AccountId))
+    .filter(account => includedAccounts.has(account.id))
     .reduce((sum, account) => {
-      return sum + getAccountBalance(account.AccountId);
+      return sum + getAccountBalance(account);
     }, 0);
 
   const formatCurrency = (amount: number, currency: string = '') => {
@@ -155,28 +82,24 @@ const Accounts = () => {
     return sign + formatted + currencySuffix;
   };
 
-  const getBankInfo = (bankId: number): Bank | undefined => {
-    return banksData.banks.find((b: Bank) => b.bankId === bankId);
-  };
-
   // Group accounts by bank
   const accountsByBank = useMemo(() => {
-    const grouped = new Map<number, Account[]>();
+    const grouped = new Map<string, RealAccount[]>();
     accounts.forEach(account => {
-      const bankId = account.bankId;
-      if (!grouped.has(bankId)) {
-        grouped.set(bankId, []);
+      const bankName = account.bank.name;
+      if (!grouped.has(bankName)) {
+        grouped.set(bankName, []);
       }
-      grouped.get(bankId)!.push(account);
+      grouped.get(bankName)!.push(account);
     });
     return grouped;
   }, [accounts]);
 
   // Group accounts by type
   const accountsByType = useMemo(() => {
-    const grouped = new Map<string, Account[]>();
+    const grouped = new Map<string, RealAccount[]>();
     accounts.forEach(account => {
-      const type = account.AccountSubType;
+      const type = account.type;
       if (!grouped.has(type)) {
         grouped.set(type, []);
       }
@@ -189,50 +112,59 @@ const Accounts = () => {
   const stats = useMemo(() => {
     let totalAssets = 0;
     let totalLiabilities = 0;
-    let savingsTotal = 0;
-    let currentTotal = 0;
+    let checkingTotal = 0;
+    let creditTotal = 0;
 
     accounts.forEach(account => {
-      if (includedAccounts.has(account.AccountId)) {
-        const balance = getAccountBalance(account.AccountId);
+      if (includedAccounts.has(account.id)) {
+        const balance = getAccountBalance(account);
         if (balance >= 0) {
           totalAssets += balance;
         } else {
           totalLiabilities += Math.abs(balance);
         }
         
-        if (account.AccountSubType === 'Savings') {
-          savingsTotal += balance;
-        } else if (account.AccountSubType === 'CurrentAccount') {
-          currentTotal += balance;
+        if (account.type === 'CHECKING') {
+          checkingTotal += balance;
+        } else if (account.type === 'CREDIT') {
+          creditTotal += balance;
         }
       }
     });
 
+    const uniqueBanks = new Set(accounts.map(a => a.bank.name));
+
     return {
       totalAssets,
       totalLiabilities,
-      savingsTotal,
-      currentTotal,
+      checkingTotal,
+      creditTotal,
       accountCount: includedAccounts.size,
-      bankCount: new Set(accounts.map(a => a.bankId)).size
+      bankCount: uniqueBanks.size
     };
   }, [accounts, includedAccounts]);
 
   const getAccountTypeInfo = (type: string) => {
     switch (type) {
-      case 'Savings':
-        return { icon: '💎', label: 'Savings', color: '#10b981' };
-      case 'CurrentAccount':
-        return { icon: '💳', label: 'Current', color: '#3b82f6' };
+      case 'CHECKING':
+        return { icon: '💳', label: 'Checking', color: '#3b82f6' };
+      case 'CREDIT':
+        return { icon: '💎', label: 'Credit', color: '#10b981' };
+      case 'SAVINGS':
+        return { icon: '💰', label: 'Savings', color: '#f59e0b' };
       default:
         return { icon: '💼', label: type, color: '#6366f1' };
     }
   };
 
-  if (isLoading) {
-    return <PageLoader />;
-  }
+  // Mock net worth history for the chart
+  const netWorthHistory = [
+    { date: 'Oct 13', netWorth: totalNetworth * 0.92, assets: stats.totalAssets * 0.90, debt: stats.totalLiabilities * 0.95 },
+    { date: 'Oct 20', netWorth: totalNetworth * 0.95, assets: stats.totalAssets * 0.93, debt: stats.totalLiabilities * 0.97 },
+    { date: 'Oct 27', netWorth: totalNetworth * 0.98, assets: stats.totalAssets * 0.96, debt: stats.totalLiabilities * 0.99 },
+    { date: 'Nov 3', netWorth: totalNetworth * 0.99, assets: stats.totalAssets * 0.98, debt: stats.totalLiabilities * 1.00 },
+    { date: 'Nov 10', netWorth: totalNetworth, assets: stats.totalAssets, debt: stats.totalLiabilities },
+  ];
 
   return (
     <div className="accounts-page-modern">
@@ -318,12 +250,7 @@ const Accounts = () => {
             </div>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart
-                data={netWorthHistory.map(item => ({
-                  date: new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-                  netWorth: item.netWorth,
-                  assets: item.assets,
-                  debt: item.debt
-                }))}
+                data={netWorthHistory}
                 margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
               >
                 <defs>
@@ -405,21 +332,21 @@ const Accounts = () => {
               </div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon savings">💎</div>
+              <div className="stat-icon savings">💳</div>
               <div className="stat-content">
-                <span className={`stat-value ${stats.savingsTotal < 0 ? 'negative' : ''}`}>
-                  {formatCurrencyWithSign(stats.savingsTotal)}
+                <span className={`stat-value ${stats.checkingTotal < 0 ? 'negative' : ''}`}>
+                  {formatCurrencyWithSign(stats.checkingTotal)}
                 </span>
-                <span className="stat-label">Savings</span>
+                <span className="stat-label">Checking</span>
               </div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon current">💳</div>
+              <div className="stat-icon current">💎</div>
               <div className="stat-content">
-                <span className={`stat-value ${stats.currentTotal < 0 ? 'negative' : ''}`}>
-                  {formatCurrencyWithSign(stats.currentTotal)}
+                <span className={`stat-value ${stats.creditTotal < 0 ? 'negative' : ''}`}>
+                  {formatCurrencyWithSign(stats.creditTotal)}
                 </span>
-                <span className="stat-label">Current</span>
+                <span className="stat-label">Credit</span>
               </div>
             </div>
           </div>
@@ -472,27 +399,26 @@ const Accounts = () => {
         {viewMode === 'all' && (
           <div className="accounts-grid">
             {accounts.map((account) => {
-              const balance = getAccountBalance(account.AccountId);
-              const bank = getBankInfo(account.bankId);
-              const isIncluded = includedAccounts.has(account.AccountId);
-              const typeInfo = getAccountTypeInfo(account.AccountSubType);
+              const balance = getAccountBalance(account);
+              const isIncluded = includedAccounts.has(account.id);
+              const typeInfo = getAccountTypeInfo(account.type);
               
               return (
                 <div
-                  key={account.AccountId}
+                  key={account.id}
                   className={`account-card-modern ${!isIncluded ? 'excluded' : ''}`}
-                  onClick={() => navigate(`/model-dataset/account/${account.AccountId}`)}
+                  onClick={() => navigate(`/real-dataset/account/${account.id}`)}
                 >
                   <div className="account-card-header">
-                    <div className="bank-badge" style={{ background: bank?.color || '#f3f4f6' }}>
-                      <span className="bank-logo">{bank?.logo || '🏦'}</span>
+                    <div className="bank-badge">
+                      <img src={account.bank.logo} alt={account.bank.name} className="bank-logo-img" />
                     </div>
                     <div className="account-toggle" onClick={(e) => e.stopPropagation()}>
                       <label className="modern-toggle">
                         <input
                           type="checkbox"
                           checked={isIncluded}
-                          onChange={(e) => toggleAccountInclusion(account.AccountId, e)}
+                          onChange={(e) => toggleAccountInclusion(account.id, e)}
                         />
                         <span className="toggle-track"></span>
                       </label>
@@ -504,8 +430,8 @@ const Accounts = () => {
                       <span className="type-icon">{typeInfo.icon}</span>
                       <span className="type-label">{typeInfo.label}</span>
                     </div>
-                    <h3 className="account-title">{account.Nickname || bank?.name || account.AccountSubType}</h3>
-                    <div className="account-number">•••• {account.AccountId.slice(-4)}</div>
+                    <h3 className="account-title">{account.name}</h3>
+                    <div className="account-number">•••• {account.accountNumber.slice(-4)}</div>
                   </div>
                   
                   <div className="account-card-footer">
@@ -513,7 +439,7 @@ const Accounts = () => {
                       <span className="balance-label">Balance</span>
                       <div className={`balance-amount ${balance < 0 ? 'negative' : 'positive'}`}>
                         {balance < 0 && '-'}
-                        <span className="amount-value">{formatCurrency(balance, account.Currency)}</span>
+                        <span className="amount-value">{formatCurrency(balance, account.currency.code)}</span>
                       </div>
                     </div>
                     <button className="view-details-btn">
@@ -530,19 +456,20 @@ const Accounts = () => {
 
         {viewMode === 'bank' && (
           <div className="grouped-view">
-            {Array.from(accountsByBank.entries()).map(([bankId, bankAccounts]) => {
-              const bank = getBankInfo(bankId);
-              const bankTotal = bankAccounts.reduce((sum, acc) => sum + getAccountBalance(acc.AccountId), 0);
+            {Array.from(accountsByBank.entries()).map(([bankName, bankAccounts]) => {
+              const bankTotal = bankAccounts
+                .filter(acc => includedAccounts.has(acc.id))
+                .reduce((sum, acc) => sum + getAccountBalance(acc), 0);
               
               return (
-                <div key={bankId} className="bank-group">
+                <div key={bankName} className="bank-group">
                   <div className="bank-group-header">
                     <div className="bank-info-display">
-                      <div className="bank-icon-large" style={{ background: bank?.color || '#f3f4f6' }}>
-                        {bank?.logo || '🏦'}
+                      <div className="bank-icon-large">
+                        <img src={bankAccounts[0].bank.logo} alt={bankName} className="bank-logo-img" />
                       </div>
                       <div>
-                        <h3 className="bank-name">{bank?.name || 'Unknown Bank'}</h3>
+                        <h3 className="bank-name">{bankName}</h3>
                         <p className="bank-accounts-count">{bankAccounts.length} account{bankAccounts.length > 1 ? 's' : ''}</p>
                       </div>
                     </div>
@@ -556,34 +483,34 @@ const Accounts = () => {
                   
                   <div className="bank-accounts-list">
                     {bankAccounts.map((account) => {
-                      const balance = getAccountBalance(account.AccountId);
-                      const isIncluded = includedAccounts.has(account.AccountId);
-                      const typeInfo = getAccountTypeInfo(account.AccountSubType);
+                      const balance = getAccountBalance(account);
+                      const isIncluded = includedAccounts.has(account.id);
+                      const typeInfo = getAccountTypeInfo(account.type);
                       
                       return (
                         <div
-                          key={account.AccountId}
+                          key={account.id}
                           className={`account-row ${!isIncluded ? 'excluded' : ''}`}
-                          onClick={() => navigate(`/model-dataset/account/${account.AccountId}`)}
+                          onClick={() => navigate(`/real-dataset/account/${account.id}`)}
                         >
                           <div className="account-row-left">
                             <span className="account-type-icon">{typeInfo.icon}</span>
                             <div className="account-row-info">
-                              <span className="account-row-name">{account.Nickname || account.AccountSubType}</span>
-                              <span className="account-row-number">•••• {account.AccountId.slice(-4)}</span>
+                              <span className="account-row-name">{account.name}</span>
+                              <span className="account-row-number">•••• {account.accountNumber.slice(-4)}</span>
                             </div>
                           </div>
                           
                           <div className="account-row-right">
                             <span className={`account-row-balance ${balance < 0 ? 'negative' : ''}`}>
-                              {balance < 0 && '-'}{formatCurrency(balance, account.Currency)}
+                              {balance < 0 && '-'}{formatCurrency(balance, account.currency.code)}
                             </span>
                             <div className="account-row-toggle" onClick={(e) => e.stopPropagation()}>
                               <label className="modern-toggle">
                                 <input
                                   type="checkbox"
                                   checked={isIncluded}
-                                  onChange={(e) => toggleAccountInclusion(account.AccountId, e)}
+                                  onChange={(e) => toggleAccountInclusion(account.id, e)}
                                 />
                                 <span className="toggle-track"></span>
                               </label>
@@ -606,7 +533,9 @@ const Accounts = () => {
           <div className="grouped-view">
             {Array.from(accountsByType.entries()).map(([type, typeAccounts]) => {
               const typeInfo = getAccountTypeInfo(type);
-              const typeTotal = typeAccounts.reduce((sum, acc) => sum + getAccountBalance(acc.AccountId), 0);
+              const typeTotal = typeAccounts
+                .filter(acc => includedAccounts.has(acc.id))
+                .reduce((sum, acc) => sum + getAccountBalance(acc), 0);
               
               return (
                 <div key={type} className="type-group">
@@ -630,36 +559,35 @@ const Accounts = () => {
                   
                   <div className="type-accounts-list">
                     {typeAccounts.map((account) => {
-                      const balance = getAccountBalance(account.AccountId);
-                      const bank = getBankInfo(account.bankId);
-                      const isIncluded = includedAccounts.has(account.AccountId);
+                      const balance = getAccountBalance(account);
+                      const isIncluded = includedAccounts.has(account.id);
                       
                       return (
                         <div
-                          key={account.AccountId}
+                          key={account.id}
                           className={`account-row ${!isIncluded ? 'excluded' : ''}`}
-                          onClick={() => navigate(`/model-dataset/account/${account.AccountId}`)}
+                          onClick={() => navigate(`/real-dataset/account/${account.id}`)}
                         >
                           <div className="account-row-left">
-                            <div className="bank-mini-icon" style={{ background: bank?.color || '#f3f4f6' }}>
-                              {bank?.logo || '🏦'}
+                            <div className="bank-mini-icon">
+                              <img src={account.bank.logo} alt={account.bank.name} className="bank-logo-img" />
                             </div>
                             <div className="account-row-info">
-                              <span className="account-row-name">{account.Nickname || bank?.name}</span>
-                              <span className="account-row-number">•••• {account.AccountId.slice(-4)}</span>
+                              <span className="account-row-name">{account.name}</span>
+                              <span className="account-row-number">•••• {account.accountNumber.slice(-4)}</span>
                             </div>
                           </div>
                           
                           <div className="account-row-right">
                             <span className={`account-row-balance ${balance < 0 ? 'negative' : ''}`}>
-                              {balance < 0 && '-'}{formatCurrency(balance, account.Currency)}
+                              {balance < 0 && '-'}{formatCurrency(balance, account.currency.code)}
                             </span>
                             <div className="account-row-toggle" onClick={(e) => e.stopPropagation()}>
                               <label className="modern-toggle">
                                 <input
                                   type="checkbox"
                                   checked={isIncluded}
-                                  onChange={(e) => toggleAccountInclusion(account.AccountId, e)}
+                                  onChange={(e) => toggleAccountInclusion(account.id, e)}
                                 />
                                 <span className="toggle-track"></span>
                               </label>
@@ -678,15 +606,8 @@ const Accounts = () => {
           </div>
         )}
       </div>
-
-      <NetWorthModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        history={netWorthHistory}
-        currentNetWorth={totalNetworth}
-      />
     </div>
   );
 };
 
-export default Accounts;
+export default AccountsReal;

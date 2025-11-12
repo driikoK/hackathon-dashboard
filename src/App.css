@@ -1,12 +1,13 @@
 .app {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background: #ffffff;
 }
 
 .main-content {
-  margin-left: 240px;
+  margin-top: 72px;
   flex: 1;
-  min-height: 100vh;
+  min-height: calc(100vh - 72px);
   background: #ffffff;
 }

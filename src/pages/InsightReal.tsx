@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
-import transactionsData from '../db/transactions.json';
-import accountsData from '../db/accounts.json';
+import transactionsData from '../db/transactions-real.json';
+import accountsData from '../db/accounts-real.json';
 import './Insight.css';
 
 interface CategoryData {
@@ -14,9 +14,8 @@ interface CategoryData {
   count: number;
 }
 
-const Insight = () => {
+const InsightReal = () => {
   const navigate = useNavigate();
-  const [selectedMonth, setSelectedMonth] = useState<Date>(new Date());
   const [expenseCategories, setExpenseCategories] = useState<CategoryData[]>([]);
   const [incomeCategories, setIncomeCategories] = useState<CategoryData[]>([]);
   const [totalExpense, setTotalExpense] = useState(0);
@@ -30,143 +29,121 @@ const Insight = () => {
     '#a8edea', '#fed6e3', '#c471f5', '#12c2e9'
   ];
 
-  // Icon mapping for transaction types (filter only meaningful types)
+  // Icon mapping for transaction categories
   const getCategoryStyle = (categoryName: string, index: number): { icon: string; color: string } => {
     const lowerName = categoryName.toLowerCase();
     
     // Income categories
-    if (lowerName.includes('deposit') || lowerName.includes('credit')) 
+    if (lowerName.includes('income')) 
       return { icon: '💰', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
     if (lowerName.includes('salary') || lowerName.includes('wage')) 
       return { icon: '💼', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('refund') || lowerName.includes('reversal')) 
+    if (lowerName.includes('refund')) 
       return { icon: '↩️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('interest') || lowerName.includes('dividend')) 
-      return { icon: '🌱', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
     
     // Expense categories
-    if (lowerName.includes('purchase') || lowerName.includes('pos')) 
-      return { icon: '🏪', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('withdrawal') || lowerName.includes('atm')) 
-      return { icon: '💸', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
+    if (lowerName.includes('food') || lowerName.includes('dining')) 
+      return { icon: '🍽️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
+    if (lowerName.includes('shopping')) 
+      return { icon: '🛍️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
+    if (lowerName.includes('transport')) 
+      return { icon: '🚗', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
     if (lowerName.includes('bill') || lowerName.includes('utility')) 
       return { icon: '📄', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('fee') || lowerName.includes('charge')) 
-      return { icon: '⚡', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('payment')) 
-      return { icon: '💳', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('subscription')) 
-      return { icon: '🔄', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
+    if (lowerName.includes('entertainment')) 
+      return { icon: '🎬', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
+    if (lowerName.includes('health')) 
+      return { icon: '⚕️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
+    if (lowerName.includes('travel')) 
+      return { icon: '✈️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
     
     return { icon: '📊', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-  };
-
-  // Filter transactions - exclude transfers and N/A types
-  const isValidTransaction = (transaction: any): boolean => {
-    // Exclude transfer types
-    const transferTypes = [
-      'InternationalTransfer',
-      'LocalBankTransfer', 
-      'SameBankTransfer',
-      'MoneyTransfer'
-    ];
-    
-    if (transferTypes.includes(transaction.TransactionType) || 
-        transferTypes.includes(transaction.SubTransactionType)) {
-      return false;
-    }
-    
-    // Exclude "Not Applicable" or undefined types
-    const category = transaction.SubTransactionType || transaction.TransactionType;
-    if (!category || category === 'N/A' || category === 'NotApplicable') {
-      return false;
-    }
-    
-    return true;
   };
 
   useEffect(() => {
     calculateCategories();
     calculateCashflow();
-  }, [selectedMonth]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const calculateCashflow = () => {
-    const year = selectedMonth.getFullYear();
-    const userAccountIds = new Set(accountsData.Data.Account.map((acc: any) => acc.AccountId));
+    const userAccountIds = new Set(accountsData.data.map((acc: any) => acc.id));
     
-    // Get data for 6 months
-    const monthsData = [];
-    for (let i = 5; i >= 0; i--) {
-      const monthDate = new Date(year, selectedMonth.getMonth() - i, 1);
-      const monthStart = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
-      const monthEnd = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0, 23, 59, 59);
+    // Group transactions by month
+    const monthlyData = new Map<string, { income: number; expense: number }>();
+    
+    transactionsData.data.forEach((t: any) => {
+      if (!userAccountIds.has(t.accountId)) return;
+      if (t.status !== 'POSTED') return;
       
-      const monthTransactions = transactionsData.Transaction.filter((t: any) => {
-        if (!userAccountIds.has(t.AccountId)) return false;
-        if (t.Status !== 'Booked') return false;
-        if (!isValidTransaction(t)) return false;
-        
-        const transDate = new Date(t.TransactionDateTime);
-        return transDate >= monthStart && transDate <= monthEnd;
-      });
+      const date = new Date(t.transactionDate);
+      const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      const monthLabel = date.toLocaleDateString('en-US', { month: 'short' });
+      
+      const amount = Math.abs(parseFloat(t.amount));
+      const current = monthlyData.get(monthKey) || { income: 0, expense: 0, label: monthLabel };
+      
+      if (t.type === 'INCOME') {
+        current.income += amount;
+      } else if (t.type === 'EXPENSE') {
+        current.expense += amount;
+      }
+      
+      monthlyData.set(monthKey, current);
+    });
 
-      let income = 0;
-      let expense = 0;
-
-      monthTransactions.forEach((t: any) => {
-        const amount = parseFloat(t.Amount.Amount);
-        if (t.CreditDebitIndicator === 'Credit') {
-          income += amount;
-        } else {
-          expense += amount;
-        }
-      });
-
-      const savings = income - expense;
-
-      monthsData.push({
-        month: monthDate.toLocaleDateString('en-US', { month: 'short' }),
-        income,
-        expense,
-        savings
+    // Get the current month from data or use current date
+    const currentDate = monthlyData.size > 0 
+      ? new Date(Array.from(monthlyData.keys())[0] + '-01')
+      : new Date();
+    
+    // Generate last 6 months (including months with no data)
+    const monthsArray = [];
+    for (let i = 5; i >= 0; i--) {
+      const date = new Date(currentDate);
+      date.setMonth(date.getMonth() - i);
+      const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      const monthLabel = date.toLocaleDateString('en-US', { month: 'short' });
+      
+      const data = monthlyData.get(monthKey) || { income: 0, expense: 0 };
+      
+      monthsArray.push({
+        month: monthLabel,
+        income: data.income || 0,
+        expense: data.expense || 0,
+        savings: (data.income || 0) - (data.expense || 0)
       });
     }
 
-    setCashflowData(monthsData);
+    setCashflowData(monthsArray);
   };
 
   const calculateCategories = () => {
-    const monthStart = new Date(selectedMonth.getFullYear(), selectedMonth.getMonth(), 1);
-    const monthEnd = new Date(selectedMonth.getFullYear(), selectedMonth.getMonth() + 1, 0, 23, 59, 59);
-
-    const userAccountIds = new Set(accountsData.Data.Account.map((acc: any) => acc.AccountId));
+    const userAccountIds = new Set(accountsData.data.map((acc: any) => acc.id));
 
     // Filter transactions
-    const monthTransactions = transactionsData.Transaction.filter((t: any) => {
-      if (!userAccountIds.has(t.AccountId)) return false;
-      if (t.Status !== 'Booked') return false;
-      if (!isValidTransaction(t)) return false;
-      
-      const transDate = new Date(t.TransactionDateTime);
-      return transDate >= monthStart && transDate <= monthEnd;
+    const validTransactions = transactionsData.data.filter((t: any) => {
+      if (!userAccountIds.has(t.accountId)) return false;
+      if (t.status !== 'POSTED') return false;
+      return true;
     });
 
-    // Categorize by SubTransactionType (more specific than TransactionType)
+    // Categorize by category name
     const expenseMap = new Map<string, { amount: number; count: number }>();
     let expenseTotal = 0;
 
     const incomeMap = new Map<string, { amount: number; count: number }>();
     let incomeTotal = 0;
 
-    monthTransactions.forEach((t: any) => {
-      const amount = parseFloat(t.Amount.Amount);
-      const category = t.SubTransactionType || t.TransactionType;
+    validTransactions.forEach((t: any) => {
+      const amount = Math.abs(parseFloat(t.amount));
+      const category = t.category?.name || 'Uncategorized';
       
-      if (t.CreditDebitIndicator === 'Debit') {
+      if (t.type === 'EXPENSE') {
         expenseTotal += amount;
         const current = expenseMap.get(category) || { amount: 0, count: 0 };
         expenseMap.set(category, { amount: current.amount + amount, count: current.count + 1 });
-      } else {
+      } else if (t.type === 'INCOME') {
         incomeTotal += amount;
         const current = incomeMap.get(category) || { amount: 0, count: 0 };
         incomeMap.set(category, { amount: current.amount + amount, count: current.count + 1 });
@@ -211,16 +188,6 @@ const Insight = () => {
     }).format(amount);
   };
 
-  const formatMonthYear = (date: Date) => {
-    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-  };
-
-  const changeMonth = (direction: number) => {
-    const newDate = new Date(selectedMonth);
-    newDate.setMonth(newDate.getMonth() + direction);
-    setSelectedMonth(newDate);
-  };
-
   // Custom tooltip for pie chart
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
@@ -260,24 +227,9 @@ const Insight = () => {
           </button>
           <h1 className="insight-page-title">Financial Insights</h1>
           <p className="insight-subtitle">Track your spending patterns and income sources</p>
-          
-          {/* Month Selector */}
-          <div className="month-selector-modern">
-            <button className="month-nav-modern" onClick={() => changeMonth(-1)}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <div className="current-month-modern">{formatMonthYear(selectedMonth)}</div>
-            <button className="month-nav-modern" onClick={() => changeMonth(1)}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
-          </div>
 
           {/* Summary Cards */}
-          <div className="summary-cards-grid">
+          <div className="summary-cards-grid" style={{ marginTop: '32px' }}>
             <div className="summary-card-insight income">
               <div className="summary-icon-insight">💰</div>
               <div className="summary-info-insight">
@@ -370,7 +322,7 @@ const Insight = () => {
                 {incomeCategories.length === 0 ? (
                   <div className="empty-categories">
                     <div className="empty-icon">📊</div>
-                    <p>No income transactions this month</p>
+                    <p>No income transactions</p>
                   </div>
                 ) : (
                   incomeCategories.map((category) => (
@@ -447,7 +399,7 @@ const Insight = () => {
                 {expenseCategories.length === 0 ? (
                   <div className="empty-categories">
                     <div className="empty-icon">📊</div>
-                    <p>No expense transactions this month</p>
+                    <p>No expense transactions</p>
                   </div>
                 ) : (
                   expenseCategories.map((category) => (
@@ -488,7 +440,7 @@ const Insight = () => {
                   {netSavings >= 0 ? (
                     <>
                       <span className="highlight-positive">Great job!</span> You saved{' '}
-                      <strong>{formatCurrency(netSavings)} AED</strong> this month ({savingsRate.toFixed(1)}% savings rate).
+                      <strong>{formatCurrency(netSavings)} AED</strong> ({savingsRate.toFixed(1)}% savings rate).
                       {expenseCategories[0] && (
                         <> Your top expense category is <strong>{expenseCategories[0].name}</strong>{' '}
                         ({formatCurrency(expenseCategories[0].amount)} AED, {expenseCategories[0].percentage.toFixed(1)}%).</>
@@ -497,7 +449,7 @@ const Insight = () => {
                   ) : (
                     <>
                       <span className="highlight-negative">Attention needed:</span> You spent{' '}
-                      <strong>{formatCurrency(Math.abs(netSavings))} AED</strong> more than you earned this month.
+                      <strong>{formatCurrency(Math.abs(netSavings))} AED</strong> more than you earned.
                       {expenseCategories[0] && (
                         <> Consider reviewing <strong>{expenseCategories[0].name}</strong> expenses{' '}
                         ({formatCurrency(expenseCategories[0].amount)} AED).</>
@@ -516,7 +468,7 @@ const Insight = () => {
             {/* Income vs Expense Chart */}
             <div className="cashflow-chart-card">
               <h3 className="cashflow-chart-title">Income vs Expenses</h3>
-              <p className="cashflow-chart-subtitle">Last 6 months comparison</p>
+              <p className="cashflow-chart-subtitle">Monthly comparison</p>
               <div className="chart-wrapper-cashflow">
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={cashflowData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -532,7 +484,10 @@ const Insight = () => {
                         padding: '12px 16px',
                         boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)'
                       }}
-                      formatter={(value: number) => formatCurrency(value) + ' AED'}
+                      formatter={(value: number) => {
+                        if (value === 0) return 'No data - 0.00 AED';
+                        return formatCurrency(value) + ' AED';
+                      }}
                     />
                     <Legend 
                       wrapperStyle={{ paddingTop: '20px', fontSize: '14px', fontWeight: 600 }}
@@ -565,8 +520,9 @@ const Insight = () => {
                         boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)'
                       }}
                       formatter={(value: number) => {
+                        if (value === 0) return 'No data - 0.00 AED';
                         const sign = value >= 0 ? '+' : '';
-                        return sign + formatCurrency(value) + ' AED';
+                        return sign + formatCurrency(Math.abs(value)) + ' AED';
                       }}
                     />
                     <Bar 
@@ -584,13 +540,13 @@ const Insight = () => {
           {/* Cashflow Summary */}
           {cashflowData.length > 0 && (
             <div className="cashflow-summary-card">
-              <h3 className="cashflow-summary-title">Current Month Summary</h3>
+              <h3 className="cashflow-summary-title">Overall Summary</h3>
               <div className="cashflow-summary-grid">
                 <div className="cashflow-summary-item income">
                   <div className="cashflow-summary-icon">💰</div>
                   <div className="cashflow-summary-info">
                     <div className="cashflow-summary-label">Total Income</div>
-                    <div className="cashflow-summary-value">+{formatCurrency(cashflowData[cashflowData.length - 1].income)} AED</div>
+                    <div className="cashflow-summary-value">+{formatCurrency(totalIncome)} AED</div>
                   </div>
                 </div>
                 
@@ -598,17 +554,17 @@ const Insight = () => {
                   <div className="cashflow-summary-icon">💸</div>
                   <div className="cashflow-summary-info">
                     <div className="cashflow-summary-label">Total Expenses</div>
-                    <div className="cashflow-summary-value">-{formatCurrency(cashflowData[cashflowData.length - 1].expense)} AED</div>
+                    <div className="cashflow-summary-value">-{formatCurrency(totalExpense)} AED</div>
                   </div>
                 </div>
                 
-                <div className={`cashflow-summary-item ${cashflowData[cashflowData.length - 1].savings >= 0 ? 'savings' : 'deficit'}`}>
-                  <div className="cashflow-summary-icon">{cashflowData[cashflowData.length - 1].savings >= 0 ? '📈' : '📉'}</div>
+                <div className={`cashflow-summary-item ${netSavings >= 0 ? 'savings' : 'deficit'}`}>
+                  <div className="cashflow-summary-icon">{netSavings >= 0 ? '📈' : '📉'}</div>
                   <div className="cashflow-summary-info">
                     <div className="cashflow-summary-label">Net Savings</div>
                     <div className="cashflow-summary-value">
-                      {cashflowData[cashflowData.length - 1].savings >= 0 ? '+' : ''}
-                      {formatCurrency(cashflowData[cashflowData.length - 1].savings)} AED
+                      {netSavings >= 0 ? '+' : ''}
+                      {formatCurrency(netSavings)} AED
                     </div>
                   </div>
                 </div>
@@ -622,5 +578,4 @@ const Insight = () => {
   );
 };
 
-export default Insight;
-
+export default InsightReal;

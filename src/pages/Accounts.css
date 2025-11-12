@@ -1,209 +1,917 @@
-.accounts-page {
-  padding: 32px;
-  max-width: 800px;
+/* Modern Accounts Page Styles */
+
+.accounts-page-modern {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding-bottom: 60px;
 }
 
-.networth-section {
-  margin-bottom: 48px;
-}
-
-.networth-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #6b7280;
-  margin: 0 0 8px 0;
-}
-
-.networth-display {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.networth-amount {
-  font-size: 48px;
-  font-weight: 700;
-  color: #111827;
-  margin: 0;
-}
-
-.chart-icon-button {
-  background: #f3f4f6;
-  border: none;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-
-.chart-icon-button:hover {
-  background: #e5e7eb;
-  transform: scale(1.05);
-}
-
-.chart-icon-button svg {
-  color: #5b7eff;
-}
-
-.accounts-section {
-  margin-bottom: 32px;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.section-header h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-  margin: 0;
-}
-
-.view-all-btn {
-  background: none;
-  border: none;
-  color: #5b7eff;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background 0.2s ease;
-}
-
-.view-all-btn:hover {
-  background: #eff6ff;
-}
-
-.accounts-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.account-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px;
-  background: #f9fafb;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
-  flex-wrap: wrap;
-}
-
-.account-card:hover {
-  background: #f3f4f6;
-  border-color: #e5e7eb;
-  transform: translateX(4px);
-}
-
-.account-icon {
-  font-size: 32px;
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-.account-info {
-  flex: 1;
-  min-width: 200px;
-}
-
-.account-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 4px;
-}
-
-.account-balance {
-  font-size: 20px;
-  font-weight: 700;
-  color: #111827;
-}
-
-.account-toggle-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
-}
-
-.toggle-label {
-  font-size: 12px;
-  color: #6b7280;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.toggle-switch {
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 60px 0 80px;
   position: relative;
-  display: inline-block;
-  width: 44px;
-  height: 24px;
-  cursor: pointer;
+  overflow: hidden;
 }
 
-.toggle-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.toggle-slider {
+.hero-section::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #d1d5db;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.3;
+}
+
+.hero-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-size: 42px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.page-subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 400;
+}
+
+.btn-insight {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-insight:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Net Worth Card */
+.networth-card {
+  background: white;
   border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  margin-bottom: 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.networth-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.networth-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.networth-amount-display {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.currency-symbol {
+  font-size: 24px;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.networth-value {
+  font-size: 56px;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.networth-value.negative {
+  color: #dc2626;
+}
+
+.networth-change {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.networth-change.positive {
+  color: #059669;
+  background: #d1fae5;
+}
+
+.networth-change.negative {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+/* Breakdown */
+.networth-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 16px;
   transition: all 0.3s ease;
 }
 
-.toggle-slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
+.breakdown-item.assets {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+.breakdown-item.liabilities {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+}
+
+.breakdown-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.breakdown-item.assets .breakdown-icon {
+  color: #059669;
+}
+
+.breakdown-item.liabilities .breakdown-icon {
+  color: #dc2626;
+}
+
+.breakdown-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.breakdown-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.breakdown-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* Net Worth Chart Card */
+.networth-chart-card {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.chart-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.chart-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 24px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legend-color.assets {
+  background: #10b981;
+}
+
+.legend-color.debt {
+  background: #ef4444;
+}
+
+.legend-color.networth {
+  background: #667eea;
+}
+
+/* Quick Stats */
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px);
+}
+
+.stat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+}
+
+.stat-value.negative {
+  color: #fecaca;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* View Controls */
+.view-controls {
+  max-width: 1400px;
+  margin: -40px auto 40px;
+  padding: 0 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.view-mode-tabs {
+  background: white;
+  border-radius: 16px;
+  padding: 8px;
+  display: inline-flex;
+  gap: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.view-tab {
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.view-tab:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.view-tab.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.view-tab svg {
   width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  border-radius: 50%;
+  height: 18px;
+}
+
+/* Accounts Container */
+.accounts-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Grid View */
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.account-card-modern {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
 }
 
-.toggle-switch input:checked + .toggle-slider {
-  background-color: #5b7eff;
+.account-card-modern:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
 }
 
-.toggle-switch input:checked + .toggle-slider:before {
-  transform: translateX(20px);
+.account-card-modern.excluded {
+  opacity: 0.5;
 }
 
-.toggle-switch:hover .toggle-slider {
-  box-shadow: 0 0 0 3px rgba(91, 126, 255, 0.1);
+.account-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.chevron {
+.bank-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bank-logo {
+  font-size: 32px;
+}
+
+.bank-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.account-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.modern-toggle input {
+  display: none;
+}
+
+.modern-toggle {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.toggle-track {
+  width: 48px;
+  height: 28px;
+  background: #e5e7eb;
+  border-radius: 14px;
+  display: block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.modern-toggle input:checked + .toggle-track {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.modern-toggle input:checked + .toggle-track::after {
+  left: 23px;
+}
+
+.account-card-body {
+  margin-bottom: 24px;
+}
+
+.account-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.type-icon {
+  font-size: 20px;
+}
+
+.type-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.account-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.account-number {
+  font-size: 14px;
+  color: #9ca3af;
+  font-family: 'Courier New', monospace;
+}
+
+.account-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 20px;
+  border-top: 2px solid #f3f4f6;
+}
+
+.balance-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.balance-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.balance-amount {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1;
+}
+
+.balance-amount.positive {
+  color: #059669;
+}
+
+.balance-amount.negative {
+  color: #dc2626;
+}
+
+.view-details-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-details-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* Grouped View */
+.grouped-view {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.bank-group,
+.type-group {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.bank-group-header,
+.type-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid #f3f4f6;
+}
+
+.bank-info-display,
+.type-info-display {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bank-icon-large,
+.type-icon-large {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: white;
+}
+
+.bank-icon-large img,
+.bank-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+.type-icon-large {
+  color: white;
+  font-size: 32px;
+}
+
+.bank-name,
+.type-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.bank-accounts-count,
+.type-accounts-count {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.bank-total,
+.type-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.total-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.total-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.total-value.negative {
+  color: #dc2626;
+}
+
+/* Account Rows */
+.bank-accounts-list,
+.type-accounts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.account-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 14px;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.account-row:hover {
+  background: white;
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.account-row.excluded {
+  opacity: 0.4;
+}
+
+.account-row-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.account-type-icon {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.bank-mini-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  background: white;
+}
+
+.bank-mini-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+}
+
+.account-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.account-row-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.account-row-number {
+  font-size: 13px;
+  color: #9ca3af;
+  font-family: 'Courier New', monospace;
+}
+
+.account-row-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.account-row-balance {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  min-width: 150px;
+  text-align: right;
+}
+
+.account-row-balance.negative {
+  color: #dc2626;
+}
+
+.account-row-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.chevron-icon {
   color: #9ca3af;
   flex-shrink: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .quick-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .accounts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+
+  .networth-card {
+    grid-template-columns: 1fr;
+  }
+
+  .networth-breakdown {
+    flex-direction: row;
+  }
+
+  .chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .chart-legend {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 40px 0 60px;
+  }
+
+  .hero-content {
+    padding: 0 24px;
+  }
+
+  .page-title {
+    font-size: 32px;
+  }
+
+  .networth-value {
+    font-size: 42px;
+  }
+
+  .hero-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .quick-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .accounts-container {
+    padding: 0 24px;
+  }
+
+  .view-controls {
+    padding: 0 24px;
+  }
+
+  .view-mode-tabs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .view-tab {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .accounts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .networth-breakdown {
+    flex-direction: column;
+  }
+
+  .networth-chart-card {
+    padding: 20px;
+  }
+
+  .chart-legend {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .bank-group,
+  .type-group {
+    padding: 20px;
+  }
+
+  .bank-group-header,
+  .type-group-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .account-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .account-row-right {
+    width: 100%;
+    justify-content: space-between;
+  }
 }

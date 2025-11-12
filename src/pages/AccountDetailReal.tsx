@@ -1,29 +1,65 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useMemo } from 'react';
-import accountsData from '../db/accounts.json';
-import transactionsData from '../db/transactions.json';
-import balancesData from '../db/balances.json';
-import banksData from '../db/banks.json';
-import type { Account, Transaction } from '../types';
+import accountsData from '../db/accounts-real.json';
+import transactionsData from '../db/transactions-real.json';
 import './AccountDetail.css';
 
-const AccountDetail = () => {
+interface RealAccount {
+  id: number;
+  name: string;
+  current_balance: string;
+  type: string;
+  accountNumber: string;
+  iban: string | null;
+  currency: {
+    code: string;
+    name: string;
+  };
+  bank: {
+    name: string;
+    logo: string;
+  };
+}
+
+interface RealTransaction {
+  id: number;
+  accountId: number;
+  merchant: {
+    name: string;
+    logo: string;
+  } | null;
+  amount: string;
+  currency: {
+    code: string;
+  };
+  type: string;
+  status: string;
+  category: {
+    name: string;
+    icon?: string;
+  } | null;
+  transactionDate: string;
+  description: string;
+  notes: string | null;
+}
+
+const AccountDetailReal = () => {
   const { accountId } = useParams<{ accountId: string }>();
   const navigate = useNavigate();
   const [filterType, setFilterType] = useState<'all' | 'income' | 'expense'>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const account: Account | undefined = accountsData.Data.Account.find(
-    (acc: Account) => acc.AccountId === accountId
+  const account: RealAccount | undefined = accountsData.data.find(
+    (acc: RealAccount) => acc.id === parseInt(accountId || '0')
   );
 
   // Get ALL transactions for this account (not filtered)
-  const allTransactions: Transaction[] = useMemo(() => {
-    return (transactionsData.Transaction || [])
-      .filter((t: any) => t.AccountId === accountId)
+  const allTransactions: RealTransaction[] = useMemo(() => {
+    return (transactionsData.data || [])
+      .filter((t: any) => t.accountId === parseInt(accountId || '0'))
       .sort((a: any, b: any) => 
-        new Date(b.TransactionDateTime).getTime() - new Date(a.TransactionDateTime).getTime()
-      ) as Transaction[];
+        new Date(b.transactionDate).getTime() - new Date(a.transactionDate).getTime()
+      ) as unknown as RealTransaction[];
   }, [accountId]);
 
   // Apply filters
@@ -32,19 +68,18 @@ const AccountDetail = () => {
 
     // Filter by type
     if (filterType === 'income') {
-      filtered = filtered.filter(t => t.CreditDebitIndicator === 'Credit');
+      filtered = filtered.filter(t => t.type === 'INCOME');
     } else if (filterType === 'expense') {
-      filtered = filtered.filter(t => t.CreditDebitIndicator === 'Debit');
+      filtered = filtered.filter(t => t.type === 'EXPENSE');
     }
 
     // Search filter
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(t => {
-        const merchant = (t.MerchantDetails?.MerchantName || '').toLowerCase();
-        const code = (t.ProprietaryBankTransactionCode?.Code || '').toLowerCase();
-        const type = (t.TransactionType || '').toLowerCase();
-        return merchant.includes(query) || code.includes(query) || type.includes(query);
+        const merchant = (t.merchant?.name || '').toLowerCase();
+        const category = (t.category?.name || '').toLowerCase();
+        return merchant.includes(query) || category.includes(query);
       });
     }
 
@@ -54,12 +89,12 @@ const AccountDetail = () => {
   // Calculate statistics
   const stats = useMemo(() => {
     const income = allTransactions
-      .filter(t => t.CreditDebitIndicator === 'Credit')
-      .reduce((sum, t) => sum + parseFloat(t.Amount.Amount), 0);
+      .filter(t => t.type === 'INCOME')
+      .reduce((sum, t) => sum + Math.abs(parseFloat(t.amount)), 0);
     
     const expenses = allTransactions
-      .filter(t => t.CreditDebitIndicator === 'Debit')
-      .reduce((sum, t) => sum + parseFloat(t.Amount.Amount), 0);
+      .filter(t => t.type === 'EXPENSE')
+      .reduce((sum, t) => sum + Math.abs(parseFloat(t.amount)), 0);
 
     return {
       total: allTransactions.length,
@@ -73,49 +108,7 @@ const AccountDetail = () => {
     return <div>Account not found</div>;
   }
 
-  const bank = banksData.banks.find((b: any) => b.bankId === account.bankId);
-
-  const getAccountBalance = (): number => {
-    const balanceTypePriority = [
-      'ClosingAvailable',
-      'ClosingBooked',
-      'InterimAvailable',
-      'OpeningAvailable',
-    ];
-
-    const accountBalances = balancesData.Balance.filter(
-      (b: any) => b.AccountId === accountId
-    );
-
-    if (accountBalances.length === 0) return 0;
-
-    let latestBalance = null;
-    
-    for (const type of balanceTypePriority) {
-      const balancesOfType = accountBalances.filter((b: any) => b.Type === type);
-      if (balancesOfType.length > 0) {
-        const sorted = balancesOfType.sort(
-          (a: any, b: any) => new Date(b.DateTime).getTime() - new Date(a.DateTime).getTime()
-        );
-        latestBalance = sorted[0];
-        break;
-      }
-    }
-
-    if (!latestBalance) {
-      const sortedBalances = accountBalances.sort(
-        (a: any, b: any) => new Date(b.DateTime).getTime() - new Date(a.DateTime).getTime()
-      );
-      latestBalance = sortedBalances[0];
-    }
-
-    if (!latestBalance) return 0;
-
-    const amount = parseFloat(latestBalance.Amount.Amount);
-    return latestBalance.CreditDebitIndicator === 'Debit' ? -amount : amount;
-  };
-
-  const balance = getAccountBalance();
+  const balance = parseFloat(account.current_balance);
 
   const formatCurrency = (amount: number, currency: string) => {
     return new Intl.NumberFormat('en-AE', {
@@ -143,45 +136,26 @@ const AccountDetail = () => {
     }
   };
 
-  const getTransactionIcon = (type: string, subType?: string) => {
-    if (type === 'POS' || subType === 'Purchase') return '🏪';
-    if (type === 'InternationalTransfer' || subType === 'MoneyTransfer') return '🌍';
-    if (subType === 'Deposit') return '💰';
-    if (type === 'ATM') return '🏧';
-    if (subType === 'Withdrawal') return '💸';
-    return '💳';
-  };
-
-  const getCategoryColor = (type: string) => {
+  const getCategoryColor = (category: string) => {
     const colors: { [key: string]: string } = {
-      'Rental / Lease Income': '#fef3c7',
+      'Food & Dining': '#fef3c7',
+      'Shopping': '#fce7f3',
+      'Transportation': '#dbeafe',
+      'Bills & Utilities': '#e0e7ff',
+      'Entertainment': '#fef9c3',
+      'Health & Fitness': '#dcfce7',
+      'Travel': '#fbcfe8',
+      'Income': '#d1fae5',
       'Transfer': '#dbeafe',
-      'Other Income': '#fef3c7',
-      'Bills / Utilities': '#dbeafe',
-      'Other / Miscellaneous': '#fef9c3',
     };
-    return colors[type] || '#f3f4f6';
-  };
-
-  const getTransactionCategory = (transaction: Transaction): string => {
-    const merchantName = transaction.MerchantDetails?.MerchantName || '';
-    const transactionType = transaction.TransactionType;
-    const subType = transaction.SubTransactionType;
-
-    if (merchantName.includes('Amana')) return 'Rental / Lease Income';
-    if (merchantName.includes('DTB')) return 'Other Income';
-    if (transactionType === 'InternationalTransfer') return 'Transfer';
-    if (merchantName.includes('Home Loan')) return 'Other / Miscellaneous';
-    if (merchantName.includes('ML-AC')) return 'Bills / Utilities';
-    
-    return subType || transactionType;
+    return colors[category] || '#f3f4f6';
   };
 
   const groupTransactionsByDate = () => {
-    const grouped: { [key: string]: Transaction[] } = {};
+    const grouped: { [key: string]: RealTransaction[] } = {};
     
     transactions.forEach(transaction => {
-      const date = formatDate(transaction.TransactionDateTime);
+      const date = formatDate(transaction.transactionDate);
       if (!grouped[date]) {
         grouped[date] = [];
       }
@@ -193,13 +167,28 @@ const AccountDetail = () => {
 
   const groupedTransactions = groupTransactionsByDate();
 
+  const getAccountTypeInfo = (type: string) => {
+    switch (type) {
+      case 'CHECKING':
+        return { icon: '💳', label: 'Checking', color: '#3b82f6' };
+      case 'CREDIT':
+        return { icon: '💎', label: 'Credit', color: '#10b981' };
+      case 'SAVINGS':
+        return { icon: '💰', label: 'Savings', color: '#f59e0b' };
+      default:
+        return { icon: '💼', label: type, color: '#6366f1' };
+    }
+  };
+
+  const typeInfo = getAccountTypeInfo(account.type);
+
   return (
     <div className="account-detail-page-modern">
       {/* Hero Section */}
       <div className="account-hero-section">
         <div className="account-hero-content">
           <div style={{ display: 'flex', gap: '12px', marginBottom: '20px' }}>
-            <button className="back-button-modern" onClick={() => navigate('/model-dataset/accounts')}>
+            <button className="back-button-modern" onClick={() => navigate('/real-dataset/accounts')}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
@@ -215,15 +204,17 @@ const AccountDetail = () => {
 
           <div className="account-hero-header">
             <div className="bank-info-hero">
-              <div className="bank-icon-large" style={{ backgroundColor: bank?.color || '#667eea' }}>
-                <span style={{ fontSize: '48px' }}>{bank?.logo || '🏦'}</span>
+              <div className="bank-icon-large-hero">
+                <img src={account.bank.logo} alt={account.bank.name} />
               </div>
               <div className="bank-text-info">
-                <h1 className="account-page-title">{bank?.name || 'Bank Account'}</h1>
+                <h1 className="account-page-title">{account.bank.name}</h1>
                 <div className="account-meta-info">
-                  <span className="account-type-badge">{account.AccountSubType}</span>
+                  <span className="account-type-badge" style={{ background: typeInfo.color }}>
+                    {typeInfo.icon} {typeInfo.label}
+                  </span>
                   <span className="account-number-badge">
-                    •••• {account.AccountIdentifiers.find(id => id.SchemeName === 'AccountNumber')?.Identification.slice(-4)}
+                    •••• {account.accountNumber.slice(-4)}
                   </span>
                 </div>
               </div>
@@ -233,7 +224,7 @@ const AccountDetail = () => {
               <div className="balance-label-hero">Current Balance</div>
               <div className="balance-amount-hero">
                 {balance < 0 && '-'}
-                {formatCurrency(balance, account.Currency)}
+                {formatCurrency(balance, account.currency.code)}
               </div>
             </div>
           </div>
@@ -251,7 +242,7 @@ const AccountDetail = () => {
             <div className="stat-card-modern stat-income">
               <div className="stat-icon-modern">💰</div>
               <div className="stat-info">
-                <div className="stat-value-modern">+{formatCurrency(stats.income, account.Currency)}</div>
+                <div className="stat-value-modern">+{formatCurrency(stats.income, account.currency.code)}</div>
                 <div className="stat-label-modern">Total Income</div>
               </div>
             </div>
@@ -259,7 +250,7 @@ const AccountDetail = () => {
             <div className="stat-card-modern stat-expense">
               <div className="stat-icon-modern">💸</div>
               <div className="stat-info">
-                <div className="stat-value-modern">-{formatCurrency(stats.expenses, account.Currency)}</div>
+                <div className="stat-value-modern">-{formatCurrency(stats.expenses, account.currency.code)}</div>
                 <div className="stat-label-modern">Total Expenses</div>
               </div>
             </div>
@@ -268,7 +259,7 @@ const AccountDetail = () => {
               <div className="stat-icon-modern">📈</div>
               <div className="stat-info">
                 <div className="stat-value-modern" style={{ color: '#ffffff' }}>
-                  {stats.net >= 0 ? '+' : ''}{formatCurrency(stats.net, account.Currency)}
+                  {stats.net >= 0 ? '+' : '-'}{formatCurrency(Math.abs(stats.net), account.currency.code)}
                 </div>
                 <div className="stat-label-modern">Net Flow</div>
               </div>
@@ -342,18 +333,21 @@ const AccountDetail = () => {
                     <div className="transaction-date-header">{date}</div>
                     <div className="transaction-items-modern">
                       {dateTransactions.map((transaction) => {
-                        const category = getTransactionCategory(transaction);
-                        const merchantName = transaction.MerchantDetails?.MerchantName || 
-                                           transaction.ProprietaryBankTransactionCode?.Code || 
-                                           transaction.TransactionType;
-                        const isPending = transaction.Status === 'Pending';
-                        const isIncome = transaction.CreditDebitIndicator === 'Credit';
+                        const isPending = transaction.status === 'PENDING';
+                        const isIncome = transaction.type === 'INCOME';
+                        
+                        const merchantName = transaction.merchant?.name || transaction.description || 'Transaction';
+                        const merchantLogo = transaction.merchant?.logo;
                         
                         return (
-                          <div key={transaction.TransactionId} className={`transaction-item-modern ${isPending ? 'pending' : ''}`}>
+                          <div key={transaction.id} className={`transaction-item-modern ${isPending ? 'pending' : ''}`}>
                             <div className="transaction-left-section">
                               <div className={`transaction-icon-modern ${isIncome ? 'income' : 'expense'}`}>
-                                {getTransactionIcon(transaction.TransactionType, transaction.SubTransactionType)}
+                                {merchantLogo ? (
+                                  <img src={merchantLogo} alt={merchantName} style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
+                                ) : (
+                                  <span>{isIncome ? '💰' : '💳'}</span>
+                                )}
                               </div>
                               <div className="transaction-details-modern">
                                 <div className="transaction-merchant-modern">
@@ -361,11 +355,11 @@ const AccountDetail = () => {
                                   {isPending && <span className="pending-badge-modern">Pending</span>}
                                 </div>
                                 <div className="transaction-meta-modern">
-                                  <span className="transaction-category-modern" style={{ backgroundColor: getCategoryColor(category) }}>
-                                    {category}
+                                  <span className="transaction-category-modern" style={{ backgroundColor: getCategoryColor(transaction.category?.name || 'Other') }}>
+                                    {transaction.category?.name || 'Uncategorized'}
                                   </span>
                                   <span className="transaction-time-modern">
-                                    {new Date(transaction.TransactionDateTime).toLocaleTimeString('en-US', { 
+                                    {new Date(transaction.transactionDate).toLocaleTimeString('en-US', { 
                                       hour: '2-digit', 
                                       minute: '2-digit' 
                                     })}
@@ -375,7 +369,7 @@ const AccountDetail = () => {
                             </div>
                             <div className={`transaction-amount-modern ${isIncome ? 'income' : 'expense'}`}>
                               {isIncome ? '+' : '-'}
-                              {formatCurrency(parseFloat(transaction.Amount.Amount), transaction.Amount.Currency)}
+                              {formatCurrency(Math.abs(parseFloat(transaction.amount)), transaction.currency.code)}
                             </div>
                           </div>
                         );
@@ -392,4 +386,4 @@ const AccountDetail = () => {
   );
 };
 
-export default AccountDetail;
+export default AccountDetailReal;
