@@ -155,8 +155,6 @@ const InsightReal = () => {
   };
 
   const calculateCashflow = () => {
-    const year = selectedMonth.getFullYear();
-    const month = selectedMonth.getMonth();
     const userAccountIds = new Set(accountsData.data.map((acc: any) => acc.id));
     
     // Group transactions by month
