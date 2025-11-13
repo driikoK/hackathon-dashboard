@@ -12,6 +12,7 @@ interface CategoryData {
   icon: string;
   color: string;
   count: number;
+  [key: string]: string | number;
 }
 
 const InsightReal = () => {

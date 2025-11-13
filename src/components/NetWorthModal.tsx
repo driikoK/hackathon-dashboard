@@ -9,7 +9,7 @@ interface NetWorthModalProps {
   currentNetWorth: number;
 }
 
-const NetWorthModal = ({ isOpen, onClose, history, currentNetWorth }: NetWorthModalProps) => {
+const NetWorthModal = ({ isOpen, onClose, history }: NetWorthModalProps) => {
   const [selectedPoint, setSelectedPoint] = useState<NetWorthHistory | null>(null);
 
   if (!isOpen) return null;
