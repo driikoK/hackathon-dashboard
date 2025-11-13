@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import accountsData from '../db/accounts-real.json';
+import UseCasesIntro from '../components/UseCasesIntro';
 import './Accounts.css';
 
 type ViewMode = 'all' | 'bank' | 'type';
@@ -181,6 +182,10 @@ const AccountsReal = () => {
             </svg>
             <span>Back to Presentation</span>
           </button>
+
+          {/* Use Cases Introduction */}
+          <UseCasesIntro />
+
           <div className="hero-header">
             <div>
               <h1 className="page-title">Financial Overview</h1>
