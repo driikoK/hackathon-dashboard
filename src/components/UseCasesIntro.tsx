@@ -55,7 +55,7 @@ const UseCasesIntro = () => {
           <span className="future-tag">📊 Monthly Review with Insights</span>
           <span className="future-tag">📈 Stocks Integration</span>
           <span className="future-tag">₿ Crypto Portfolio Tracking</span>
-          <span className="future-tag">🏠 Real Estate Management</span>
+          <span className="future-tag">🏠 Real Estate Asset Tracking</span>
           <span className="future-tag">⌚ Luxury Assets (Watches, Art)</span>
           <span className="future-tag">🛡️ Insurance Integration</span>
           <span className="future-tag">🎯 Personalized Offers</span>
@@ -63,7 +63,7 @@ const UseCasesIntro = () => {
           <span className="future-tag">💳 Credit Score Insights</span>
         </div>
 
-        <p style={{ marginTop: '24px', fontSize: '14px', opacity: 0.85 }}>
+        <p style={{ marginTop: '24px', fontSize: '18px', opacity: 0.95, fontWeight: 500 }}>
           Once Open Finance matures and provides access to more diverse financial data, 
           the possibilities for innovative products and services become limitless.
         </p>

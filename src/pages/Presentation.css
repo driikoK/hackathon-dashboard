@@ -252,6 +252,63 @@
   font-weight: normal;
 }
 
+/* AI Enrichment Table Styles */
+.ai-enrichment-table .input-column {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  position: relative;
+}
+
+.ai-enrichment-table .input-column::after {
+  content: '📥 INPUT';
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #b45309;
+  background: #fde68a;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ai-enrichment-table .output-column {
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+  position: relative;
+}
+
+.ai-enrichment-table .output-column::after {
+  content: '📤 OUTPUT';
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #047857;
+  background: #a7f3d0;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ai-enrichment-table .input-cell {
+  background: #fffbeb;
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: 600;
+  color: #92400e;
+  max-width: 400px;
+  word-wrap: break-word;
+  border-left: 4px solid #f59e0b;
+}
+
+.ai-enrichment-table .output-cell {
+  background: #ecfdf5;
+  color: #065f46;
+  font-weight: 500;
+  border-left: 4px solid #10b981;
+}
+
 .raw-description {
   font-family: 'Courier New', monospace;
   font-size: 11px;

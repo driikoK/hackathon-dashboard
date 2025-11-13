@@ -349,14 +349,9 @@ const Presentation = () => {
               <div className="conclusion-content">
                 <h3>Our Approach</h3>
                 <p>
-                  We will demonstrate our use case with <strong>2 different datasets</strong>:
+                  <strong>In the next section, we'll show how our AI engine processes this raw data to extract merchant names, clean descriptions, and add intelligent categorization.</strong>
                 </p>
-                <ol>
-                  <li><strong>Model Bank Dataset</strong> - Sandbox environment data with limitations</li>
-                  <li><strong>Realistic Dataset from Lean Technologies</strong> - Raw transaction data from actual bank integrations</li>
-                </ol>
                 <p className="conclusion-note">
-                  In the next section, we'll show how our AI engine processes this raw data to extract merchant names, clean descriptions, and add intelligent categorization.
                 </p>
               </div>
             </div>
@@ -456,7 +451,7 @@ const Presentation = () => {
                 <div className="capability-card">
                   <div className="capability-icon">📊</div>
                   <h3>3. Smart Categorization</h3>
-                  <p>Intelligent category and subcategory assignment based on merchant and transaction patterns</p>
+                  <p>Intelligent category and subcategory assignment based on merchant, transaction patterns, and user preferences</p>
                   <div className="example">
                     <div className="example-before">
                       <span className="label">Merchant:</span>
@@ -514,57 +509,63 @@ const Presentation = () => {
               <p className="samples-description">The same transactions from the previous page, now processed by our AI engine:</p>
               
               <div className="table-wrapper">
-                <table className="data-table">
+                <table className="data-table ai-enrichment-table">
                   <thead>
                     <tr>
-                      <th>Raw Description</th>
-                      <th>Cleaned Description</th>
-                      <th>Category</th>
-                      <th>Subcategory</th>
-                      <th>Merchant</th>
-                      <th>Merchant Logo</th>
+                      <th className="input-column">Raw Description (Input)</th>
+                      <th className="output-column">Amount</th>
+                      <th className="output-column">Cleaned Description</th>
+                      <th className="output-column">Category</th>
+                      <th className="output-column">Subcategory</th>
+                      <th className="output-column">Merchant</th>
+                      <th className="output-column">Merchant Logo</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>CARD TRANSACTION 07AUG25 V DEBIT 006837AED 49.00 Card Ending with 4004 Netflix.com A89517135</td>
-                      <td>Netflix.com</td>
-                      <td>Bills / Utilities</td>
-                      <td>Cable</td>
-                      <td className="merchant-name">Netflix</td>
-                      <td><img src="https://getcrunchapp-stage-s3-bucket.s3.me-central-1.amazonaws.com/1759173330094_61df4916-7578-40dd-94a0-ca563b7a0913.jpg" alt="Netflix" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                      <td className="input-cell">CARD TRANSACTION 07AUG25 V DEBIT 006837AED 49.00 Card Ending with 4004 Netflix.com A89517135</td>
+                      <td className="output-cell">-49.00 AED</td>
+                      <td className="output-cell">Netflix.com</td>
+                      <td className="output-cell">Bills / Utilities</td>
+                      <td className="output-cell">Cable</td>
+                      <td className="output-cell merchant-name">Netflix</td>
+                      <td className="output-cell"><img src="https://getcrunchapp-stage-s3-bucket.s3.me-central-1.amazonaws.com/1759173330094_61df4916-7578-40dd-94a0-ca563b7a0913.jpg" alt="Netflix" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
                     </tr>
                     <tr>
-                      <td>Visa Purchase : 259 0829 706956 LULUHYPERMARKET QUSAIS AED DUBAI AED 5 0829</td>
-                      <td>Lulu Hypermarket - Qusais</td>
-                      <td>Food & Dining</td>
-                      <td>Groceries</td>
-                      <td className="merchant-name">Lulu Hypermarket</td>
-                      <td><img src="https://getcrunchapp-stage-s3-bucket.s3.me-central-1.amazonaws.com/1759170808520_001fc1da-e11c-400c-af26-159c9d734435.png" alt="Lulu" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                      <td className="input-cell">Visa Purchase : 259 0829 706956 LULUHYPERMARKET QUSAIS AED DUBAI AED 5 0829</td>
+                      <td className="output-cell">-308.50 AED</td>
+                      <td className="output-cell">Lulu Hypermarket - Qusais</td>
+                      <td className="output-cell">Food & Dining</td>
+                      <td className="output-cell">Groceries</td>
+                      <td className="output-cell merchant-name">Lulu Hypermarket</td>
+                      <td className="output-cell"><img src="https://getcrunchapp-stage-s3-bucket.s3.me-central-1.amazonaws.com/1759170808520_001fc1da-e11c-400c-af26-159c9d734435.png" alt="Lulu" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
                     </tr>
                     <tr>
-                      <td>PUR 30/08 DUBAI ELEC DUBAI 1514</td>
-                      <td>Dubai Electricity</td>
-                      <td>Bills / Utilities</td>
-                      <td>Electricity & Water</td>
-                      <td className="merchant-name">DEWA</td>
-                      <td><img src="https://backend.stage.getcrunch.app/merchant_logo/dewa.png" alt="DEWA" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                      <td className="input-cell">PUR 30/08 DUBAI ELEC DUBAI 1514</td>
+                      <td className="output-cell">-419.90 AED</td>
+                      <td className="output-cell">Dubai Electricity</td>
+                      <td className="output-cell">Bills / Utilities</td>
+                      <td className="output-cell">Electricity & Water</td>
+                      <td className="output-cell merchant-name">DEWA</td>
+                      <td className="output-cell"><img src="https://backend.stage.getcrunch.app/merchant_logo/dewa.png" alt="DEWA" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
                     </tr>
                     <tr>
-                      <td>ETIHAD AIRW 6072412674870 ABU DHABI</td>
-                      <td>Etihad Airways</td>
-                      <td>Travel</td>
-                      <td>Airline Tickets</td>
-                      <td className="merchant-name">Etihad Airways</td>
-                      <td><img src="https://getcrunchapp-prod-s3-bucket.s3.me-south-1.amazonaws.com/1762801755973_c05740b6-a493-456e-b3c0-eb7280b3ecf8.png" alt="Etihad" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                      <td className="input-cell">ETIHAD AIRW 6072412674870 ABU DHABI</td>
+                      <td className="output-cell">-8,624.19 AED</td>
+                      <td className="output-cell">Etihad Airways</td>
+                      <td className="output-cell">Travel</td>
+                      <td className="output-cell">Airline Tickets</td>
+                      <td className="output-cell merchant-name">Etihad Airways</td>
+                      <td className="output-cell"><img src="https://getcrunchapp-prod-s3-bucket.s3.me-south-1.amazonaws.com/1762801755973_c05740b6-a493-456e-b3c0-eb7280b3ecf8.png" alt="Etihad" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
                     </tr>
                     <tr>
-                      <td>Visa Purchase : 259 0829 737761 MCDONALDS-AL BUSTAN CN AED DUBAI AED 28 0829</td>
-                      <td>McDonald's - Al Bustan</td>
-                      <td>Food & Dining</td>
-                      <td>Fast Food</td>
-                      <td className="merchant-name">McDonald's</td>
-                      <td><img src="https://getcrunchapp-stage-s3-bucket.s3.me-central-1.amazonaws.com/1759173956906_f7fe9ade-68c3-4305-88fd-01792b6472a7.jpeg" alt="McDonald's" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                      <td className="input-cell">Visa Purchase : 259 0829 737761 MCDONALDS-AL BUSTAN CN AED DUBAI AED 28 0829</td>
+                      <td className="output-cell">-28.00 AED</td>
+                      <td className="output-cell">McDonald's - Al Bustan</td>
+                      <td className="output-cell">Food & Dining</td>
+                      <td className="output-cell">Fast Food</td>
+                      <td className="output-cell merchant-name">McDonald's</td>
+                      <td className="output-cell"><img src="https://getcrunchapp-stage-s3-bucket.s3.me-central-1.amazonaws.com/1759173956906_f7fe9ade-68c3-4305-88fd-01792b6472a7.jpeg" alt="McDonald's" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
                     </tr>
                   </tbody>
                 </table>
@@ -573,7 +574,7 @@ const Presentation = () => {
 
             <div className="real-examples-section">
               <h2 className="examples-title">Real Transaction Examples</h2>
-              <p className="examples-subtitle">Live data from connection ID 11308 processed by our AI engine:</p>
+              <p className="examples-subtitle">Live data from account #a7f3e9b2 processed by our AI engine:</p>
 
               <div className="transaction-cards">
                 <div className="transaction-card">
@@ -634,7 +635,7 @@ const Presentation = () => {
                       </div>
                       <div className="merchant-details">
                         <h4>McDonald's</h4>
-                        <span className="category-tag">Food & Dining</span>
+                        <span className="category-tag">Fast Food</span>
                       </div>
                     </div>
                     <div className="transaction-amount debit">-28.00 AED</div>
@@ -665,39 +666,39 @@ const Presentation = () => {
                 </div>
 
                 <div className="use-case-card">
-                  <div className="use-case-icon">🏦</div>
-                  <h4>Lending & Credit Scoring</h4>
-                  <p>Accurate income verification, spending patterns, and creditworthiness assessment</p>
+                  <div className="use-case-icon">🤖</div>
+                  <h4>AI Financial Adviser</h4>
+                  <p>Intelligent financial guidance powered by spending analysis, income patterns, and personalized recommendations</p>
                 </div>
 
                 <div className="use-case-card">
-                  <div className="use-case-icon">✅</div>
-                  <h4>Credit & Risk Checks</h4>
-                  <p>Detect high-risk spending, gambling patterns, or financial instability</p>
+                  <div className="use-case-icon">🎟️</div>
+                  <h4>Affiliate Marketing</h4>
+                  <p>Monetize user spending data by offering exclusive promo codes and cashback deals from partner merchants</p>
                 </div>
 
                 <div className="use-case-card">
-                  <div className="use-case-icon">🏪</div>
-                  <h4>Merchant Preferences</h4>
-                  <p>Understand customer shopping habits and favorite brands</p>
+                  <div className="use-case-icon">⭐</div>
+                  <h4>User Preferences Analysis</h4>
+                  <p>Understand customer shopping habits, favorite brands, spending categories, and lifestyle patterns</p>
                 </div>
 
                 <div className="use-case-card">
                   <div className="use-case-icon">🎁</div>
                   <h4>Loyalty & Discount Programs</h4>
-                  <p>Targeted offers based on merchant visits and spending patterns</p>
+                  <p>Targeted offers based on merchant visits, spending patterns, and user preferences</p>
                 </div>
 
                 <div className="use-case-card">
-                  <div className="use-case-icon">📊</div>
-                  <h4>Fraud Detection</h4>
-                  <p>Identify unusual merchant patterns or transaction anomalies</p>
+                  <div className="use-case-icon">🔮</div>
+                  <h4>Financial Forecasting</h4>
+                  <p>Predict future cash flow, expenses, and savings potential based on historical spending patterns</p>
                 </div>
 
                 <div className="use-case-card">
-                  <div className="use-case-icon">🎯</div>
-                  <h4>Marketing & Personalization</h4>
-                  <p>Deliver personalized offers and recommendations based on spending behavior</p>
+                  <div className="use-case-icon">📈</div>
+                  <h4>Investment Lead Generation</h4>
+                  <p>Identify high-potential customers and generate qualified leads for investment platforms based on financial behavior</p>
                 </div>
 
                 <div className="use-case-card">
