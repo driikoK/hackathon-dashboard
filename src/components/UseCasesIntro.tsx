@@ -51,6 +51,8 @@ const UseCasesIntro = () => {
           <span className="future-tag">📅 Financial Planning Services</span>
           <span className="future-tag">💡 Financial Advisory Services</span>
           <span className="future-tag">🤝 Investment Partnerships</span>
+          <span className="future-tag">🤖 AI-Based Chatbot</span>
+          <span className="future-tag">📊 Monthly Review with Insights</span>
           <span className="future-tag">📈 Stocks Integration</span>
           <span className="future-tag">₿ Crypto Portfolio Tracking</span>
           <span className="future-tag">🏠 Real Estate Management</span>
