@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
+import ScrollToTop from './components/ScrollToTop';
 import Presentation from './pages/Presentation';
 import Accounts from './pages/Accounts';
 import AccountDetail from './pages/AccountDetail';
@@ -13,6 +14,7 @@ import './App.css';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {/* Presentation route without sidebar */}
         <Route path="/" element={<Presentation />} />
