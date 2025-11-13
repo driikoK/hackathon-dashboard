@@ -158,14 +158,35 @@ const AccountsReal = () => {
     }
   };
 
-  // Mock net worth history for the chart
-  const netWorthHistory = [
-    { date: 'Oct 13', netWorth: totalNetworth * 0.92, assets: stats.totalAssets * 0.90, debt: stats.totalLiabilities * 0.95 },
-    { date: 'Oct 20', netWorth: totalNetworth * 0.95, assets: stats.totalAssets * 0.93, debt: stats.totalLiabilities * 0.97 },
-    { date: 'Oct 27', netWorth: totalNetworth * 0.98, assets: stats.totalAssets * 0.96, debt: stats.totalLiabilities * 0.99 },
-    { date: 'Nov 3', netWorth: totalNetworth * 0.99, assets: stats.totalAssets * 0.98, debt: stats.totalLiabilities * 1.00 },
-    { date: 'Nov 10', netWorth: totalNetworth, assets: stats.totalAssets, debt: stats.totalLiabilities },
-  ];
+  // Mock net worth history for the chart - Last 6 months (daily data points)
+  const generateDailyNetWorthHistory = () => {
+    const history = [];
+    const startDate = new Date('2025-05-13');
+    const endDate = new Date('2025-11-13');
+    const totalDays = Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+    
+    for (let i = 0; i <= totalDays; i++) {
+      const currentDate = new Date(startDate);
+      currentDate.setDate(startDate.getDate() + i);
+      
+      const month = currentDate.toLocaleDateString('en-US', { month: 'short' });
+      const day = currentDate.getDate();
+      
+      const progress = i / totalDays;
+      const growthFactor = 0.82 + (progress * 0.18); // From 0.82 to 1.00
+      
+      history.push({
+        date: `${month} ${day}`,
+        netWorth: totalNetworth * growthFactor,
+        assets: stats.totalAssets * (0.80 + progress * 0.20),
+        debt: stats.totalLiabilities * (0.85 + progress * 0.15)
+      });
+    }
+    
+    return history;
+  };
+
+  const netWorthHistory = generateDailyNetWorthHistory();
 
   return (
     <div className="accounts-page-modern">
@@ -296,21 +317,21 @@ const AccountsReal = () => {
                   formatter={(value: number) => `AED ${value.toLocaleString()}`}
                 />
                 <Area 
-                  type="monotone" 
+                  type="linear" 
                   dataKey="assets" 
                   stroke="#10b981" 
                   strokeWidth={2}
                   fill="url(#colorAssets)" 
                 />
                 <Area 
-                  type="monotone" 
+                  type="linear" 
                   dataKey="debt" 
                   stroke="#ef4444" 
                   strokeWidth={2}
                   fill="url(#colorDebt)" 
                 />
                 <Area 
-                  type="monotone" 
+                  type="linear" 
                   dataKey="netWorth" 
                   stroke="#667eea" 
                   strokeWidth={3}

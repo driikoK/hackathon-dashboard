@@ -962,11 +962,22 @@
 /* Footer Navigation */
 .section-footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-top: 48px;
   padding-top: 32px;
   border-top: 2px solid #e5e7eb;
+  gap: 20px;
+}
+
+.section-footer > .next-button:first-child,
+.section-footer > .dashboard-button:first-child {
+  margin-left: auto;
+}
+
+.section-footer .back-button,
+.section-footer .next-button,
+.section-footer .dashboard-button {
+  margin-bottom: 0;
 }
 
 .next-button,
@@ -982,6 +993,8 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  height: 56px;
+  line-height: 1;
 }
 
 .next-button,
@@ -1000,11 +1013,16 @@
   background: white;
   color: #667eea;
   border: 2px solid #667eea;
+  margin-bottom: 0;
 }
 
 .back-button:hover {
   transform: translateX(-4px);
   background: #f9fafb;
+}
+
+.presentation-page .back-button {
+  margin-bottom: 0;
 }
 
 .dashboard-button {
@@ -1209,5 +1227,70 @@
   
   .dataset-button h3 {
     font-size: 20px;
+  }
+}
+
+/* Section Index Navigator */
+.section-index {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+
+.index-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #667eea;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.index-items {
+  display: flex;
+  gap: 8px;
+}
+
+.index-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f3f4f6;
+  border: 2px solid transparent;
+}
+
+.index-item:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.index-item.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.index-icon {
+  font-size: 16px;
+}
+
+.index-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.index-item.active .index-name {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .section-index {
+    display: none;
   }
 }

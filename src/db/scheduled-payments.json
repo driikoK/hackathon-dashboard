@@ -1,0 +1,357 @@
+{
+  "Data": {
+    "ScheduledPayment": [
+      {
+        "ScheduledPaymentId": "QHCROYUV4YMT7OR",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "ScheduledPaymentDateTime": "2027-09-23T22:01:13.437Z",
+        "ScheduledType": "Arrival",
+        "InstructedAmount": {
+          "Amount": "36395",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "NBFUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "IBAN",
+            "Identification": "W2AE5YBA8LXZJVWJFWJJQKQ"
+          },
+          {
+            "SchemeName": "UtilityName",
+            "Identification": "HEWGWJXADJIA"
+          },
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "IZ6NNO9LLCAFPDZT9B"
+          }
+        ]
+      },
+      {
+        "ScheduledPaymentId": "VICTPKUJBAXD9LM",
+        "AccountId": "ACC_9ZZVIVO4ME",
+        "ScheduledPaymentDateTime": "2027-01-24T12:53:12.189Z",
+        "ScheduledType": "Arrival",
+        "DebtorReference": "80ZOE82V",
+        "InstructedAmount": {
+          "Amount": "16133",
+          "Currency": "AED"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "MobileNumber",
+            "Identification": "TH7ZFQP5ZNVVZQSLBQXRVJME"
+          }
+        ]
+      },
+      {
+        "ScheduledPaymentId": "NSCLW9ZKJTOHEXW",
+        "AccountId": "ACC_ANE4IMEK3O",
+        "ScheduledPaymentDateTime": "2027-06-15T09:14:03.797Z",
+        "ScheduledType": "Execution",
+        "InstructedAmount": {
+          "Amount": "26451",
+          "Currency": "AED"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "IBAN",
+            "Identification": "P5H9VD77BKYPZ7LHFF0439RRN"
+          },
+          {
+            "SchemeName": "AccountNumber",
+            "Identification": "TZPSU2OFC2AYDH3QOV84WXATL"
+          },
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "GXFYLOJH6OK"
+          }
+        ]
+      },
+      {
+        "ScheduledPaymentId": "5RWXFHDUATE1BSR",
+        "AccountId": "ACC_QTYESCDJNC",
+        "ScheduledPaymentDateTime": "2027-09-14T18:40:02.878Z",
+        "ScheduledType": "Arrival",
+        "InstructedAmount": {
+          "Amount": "34417",
+          "Currency": "AED"
+        }
+      },
+      {
+        "ScheduledPaymentId": "QZBWFSJQDED4SNE",
+        "AccountId": "ACC_M8Z4FRISYH",
+        "ScheduledPaymentDateTime": "2026-09-27T16:40:18.808Z",
+        "ScheduledType": "Execution",
+        "DebtorReference": "CCFDPZWPYVP28POSGLOC",
+        "InstructedAmount": {
+          "Amount": "21338",
+          "Currency": "AED"
+        }
+      },
+      {
+        "ScheduledPaymentId": "USIJPWM8M6GOM3W",
+        "AccountId": "ACC_NPMMX3FGKD",
+        "ScheduledPaymentDateTime": "2027-07-02T09:27:57.670Z",
+        "ScheduledType": "Execution",
+        "InstructedAmount": {
+          "Amount": "43162",
+          "Currency": "AED"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "EOPFYARN7R6VYKJJZ"
+          },
+          {
+            "SchemeName": "AccountNumber",
+            "Identification": "QRHXIPMGRHAE6AXG6O99IHL"
+          },
+          {
+            "SchemeName": "MobileNumber",
+            "Identification": "156FSMLDMP1ZVEQ3"
+          }
+        ]
+      },
+      {
+        "ScheduledPaymentId": "U0YH9ZGLZMFAZHU",
+        "AccountId": "ACC_TZGEGD16M5",
+        "ScheduledPaymentDateTime": "2026-06-15T13:51:01.629Z",
+        "ScheduledType": "Execution",
+        "InstructedAmount": {
+          "Amount": "21244",
+          "Currency": "AED"
+        }
+      },
+      {
+        "ScheduledPaymentId": "ETYCWY0TYDYWNB5",
+        "AccountId": "ACC_5ARILIZT7X",
+        "ScheduledPaymentDateTime": "2027-09-18T10:25:51.111Z",
+        "ScheduledType": "Arrival",
+        "InstructedAmount": {
+          "Amount": "17703",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "SCBLUAEXXXX"
+        }
+      },
+      {
+        "ScheduledPaymentId": "HK4RV7DO1WDJYTF",
+        "AccountId": "ACC_HSEJMTDPHR",
+        "ScheduledPaymentDateTime": "2026-07-22T04:17:52.974Z",
+        "ScheduledType": "Arrival",
+        "InstructedAmount": {
+          "Amount": "20550",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "RAKBUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "UtilityName",
+            "Identification": "YGSS2XJY8HXG"
+          },
+          {
+            "SchemeName": "UtilityName",
+            "Identification": "RWRY7MD4TUTUZWJPFZR8"
+          }
+        ]
+      },
+      {
+        "ScheduledPaymentId": "WTLEGOZUQTQHWU8",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "ScheduledPaymentDateTime": "2025-12-27T14:53:17.630Z",
+        "ScheduledType": "Execution",
+        "DebtorReference": "EBFPAQEQIW",
+        "InstructedAmount": {
+          "Amount": "29242",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "HSBCUAEXXXX"
+        }
+      },
+      {
+        "ScheduledPaymentId": "DGRJERJYXQERAZH",
+        "AccountId": "ACC_9ZZVIVO4ME",
+        "ScheduledPaymentDateTime": "2027-10-17T22:51:50.359Z",
+        "ScheduledType": "Execution",
+        "InstructedAmount": {
+          "Amount": "43162",
+          "Currency": "AED"
+        }
+      },
+      {
+        "ScheduledPaymentId": "WK99UU6RQLNJERH",
+        "AccountId": "ACC_ANE4IMEK3O",
+        "ScheduledPaymentDateTime": "2026-02-18T11:48:33.682Z",
+        "ScheduledType": "Execution",
+        "DebtorReference": "JR4FPPQALA7AQASEL8O",
+        "InstructedAmount": {
+          "Amount": "16133",
+          "Currency": "AED"
+        }
+      },
+      {
+        "ScheduledPaymentId": "EFERFKAZH5DZP0Q",
+        "AccountId": "ACC_QTYESCDJNC",
+        "ScheduledPaymentDateTime": "2026-06-03T06:49:03.941Z",
+        "ScheduledType": "Execution",
+        "DebtorReference": "0X23RMW0NP7ESFC",
+        "InstructedAmount": {
+          "Amount": "13241",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "FABUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "IBAN",
+            "Identification": "JRPYSGC2SRVKZZ"
+          },
+          {
+            "SchemeName": "EWallet",
+            "Identification": "N7AJCQQWMTVIKDUWH60NRPN"
+          },
+          {
+            "SchemeName": "IBAN",
+            "Identification": "PSOUGBWT0YMS"
+          }
+        ]
+      },
+      {
+        "ScheduledPaymentId": "QN4LTDMD5UJB4CI",
+        "AccountId": "ACC_M8Z4FRISYH",
+        "ScheduledPaymentDateTime": "2025-11-15T21:26:17.688Z",
+        "ScheduledType": "Execution",
+        "DebtorReference": "XC664RCRTY86JG",
+        "InstructedAmount": {
+          "Amount": "21543",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "FLYDUBAIUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "UtilityName",
+            "Identification": "BBRSSJRP03PXYHFMRUYI6W"
+          },
+          {
+            "SchemeName": "EWallet",
+            "Identification": "MXTRMYMAMEQHHAIFQ"
+          },
+          {
+            "SchemeName": "IBAN",
+            "Identification": "685TLSF54OWX04YLNL4FE17"
+          }
+        ]
+      },
+      {
+        "ScheduledPaymentId": "XIOHNZ18E6ISHGY",
+        "AccountId": "ACC_NPMMX3FGKD",
+        "ScheduledPaymentDateTime": "2026-10-02T20:32:52.485Z",
+        "ScheduledType": "Execution",
+        "InstructedAmount": {
+          "Amount": "36026",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "NBRKUAEXXXX"
+        }
+      },
+      {
+        "ScheduledPaymentId": "4WCMRVJFBAJ8ARO",
+        "AccountId": "ACC_TZGEGD16M5",
+        "ScheduledPaymentDateTime": "2026-05-08T07:55:12.942Z",
+        "ScheduledType": "Execution",
+        "InstructedAmount": {
+          "Amount": "42425",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "HILALUAEXXXX"
+        }
+      },
+      {
+        "ScheduledPaymentId": "DPE31O50Q33C0ZU",
+        "AccountId": "ACC_5ARILIZT7X",
+        "ScheduledPaymentDateTime": "2026-08-05T06:32:11.635Z",
+        "ScheduledType": "Execution",
+        "DebtorReference": "PJXMJADHFLU",
+        "InstructedAmount": {
+          "Amount": "47271",
+          "Currency": "AED"
+        }
+      },
+      {
+        "ScheduledPaymentId": "05QVPJHSKZZJI7D",
+        "AccountId": "ACC_HSEJMTDPHR",
+        "ScheduledPaymentDateTime": "2026-02-04T07:54:29.518Z",
+        "ScheduledType": "Execution",
+        "DebtorReference": "SC7DZ9H0YS8L",
+        "InstructedAmount": {
+          "Amount": "20550",
+          "Currency": "AED"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "AccountNumber",
+            "Identification": "KCSMTPUKNT"
+          },
+          {
+            "SchemeName": "EWallet",
+            "Identification": "OIIJUH1YEJ1AFJZY"
+          },
+          {
+            "SchemeName": "MobileNumber",
+            "Identification": "8IOSJGMKCXSRCT6BRC1UQGK"
+          }
+        ]
+      },
+      {
+        "ScheduledPaymentId": "XVWP13URYEPIMZR",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "ScheduledPaymentDateTime": "2026-06-16T17:22:10.234Z",
+        "ScheduledType": "Execution",
+        "InstructedAmount": {
+          "Amount": "27552",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "NBFUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "EWallet",
+            "Identification": "UO39MZY6W8GH9B3NGUP"
+          },
+          {
+            "SchemeName": "AccountNumber",
+            "Identification": "MNMG66UXNJP54LMK"
+          }
+        ]
+      }
+    ],
+    "AccountId": "ACC_COMBINED"
+  },
+  "Meta": {
+    "TotalPages": 1
+  },
+  "Links": {
+    "Self": "https://rs1.altareq1.sandbox.apihub.openfinance.ae/open-finance/account-information/v1.2/accounts/scheduled-payments"
+  }
+}

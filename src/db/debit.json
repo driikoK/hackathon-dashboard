@@ -1,0 +1,370 @@
+{
+  "Data": {
+    "DirectDebit": [
+      {
+        "DirectDebitId": "AMEH1S6I25EWDKH",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "MandateIdentification": "22BGVXTHWDER",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Abu Dhabi Pet Boarding",
+        "Frequency": "Monthly"
+      },
+      {
+        "DirectDebitId": "9PB60IK74EH2NX2",
+        "AccountId": "ACC_9ZZVIVO4ME",
+        "MandateIdentification": "9E7PDTX1HORF",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Abu Dhabi Pet Fair Center",
+        "PreviousPaymentDateTime": "2025-10-24T07:40:52.297Z",
+        "Frequency": "Quarterly",
+        "PreviousPaymentAmount": {
+          "Amount": "1653",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "I9WMJRIDCGYRFOX",
+        "AccountId": "ACC_ANE4IMEK3O",
+        "MandateIdentification": "6HPZ9DAHKMU8",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Dubai Pet Home Center",
+        "PreviousPaymentDateTime": "2024-12-12T22:06:42.049Z",
+        "Frequency": "Fortnightly",
+        "PreviousPaymentAmount": {
+          "Amount": "3731",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "9LELHJTYFTF0XAO",
+        "AccountId": "ACC_QTYESCDJNC",
+        "MandateIdentification": "7FKISL8VYGCR",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Sharjah Theater",
+        "PreviousPaymentDateTime": "2024-04-07T00:10:57.642Z",
+        "Frequency": "Annual",
+        "PreviousPaymentAmount": {
+          "Amount": "1526",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "MCGRMRTNQKFWTF2",
+        "AccountId": "ACC_M8Z4FRISYH",
+        "MandateIdentification": "QISV0AQUE8U2",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Abu Dhabi Pet Event Center",
+        "PreviousPaymentDateTime": "2025-06-14T04:41:26.974Z",
+        "Frequency": "NotKnown",
+        "PreviousPaymentAmount": {
+          "Amount": "258",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "CMOWJOT6KUIRYPL",
+        "AccountId": "ACC_NPMMX3FGKD",
+        "MandateIdentification": "XECXYHUVET77",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Dubai Pet Recreation Center",
+        "PreviousPaymentDateTime": "2024-11-19T22:55:55.722Z",
+        "Frequency": "Quarterly",
+        "PreviousPaymentAmount": {
+          "Amount": "1568",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "HUZUWTOA6B4FXSC",
+        "AccountId": "ACC_TZGEGD16M5",
+        "MandateIdentification": "GRXBOOTNWOXJ",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Woori Bank",
+        "PreviousPaymentDateTime": "2025-05-17T10:20:24.802Z",
+        "Frequency": "HalfYearly",
+        "PreviousPaymentAmount": {
+          "Amount": "2072",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "GJ1QQBGNLLA1EGZ",
+        "AccountId": "ACC_5ARILIZT7X",
+        "MandateIdentification": "RQ0RAGXWAQQJ",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Dubai Veterinary Center",
+        "PreviousPaymentDateTime": "2024-03-23T01:09:30.816Z",
+        "Frequency": "HalfYearly",
+        "PreviousPaymentAmount": {
+          "Amount": "1017",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "4PUOEIVB7NMBXHK",
+        "AccountId": "ACC_HSEJMTDPHR",
+        "MandateIdentification": "YP6GKBSLPM8P",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Sharjah Metro",
+        "Frequency": "Fortnightly"
+      },
+      {
+        "DirectDebitId": "UQUPRZKM6AXWUS0",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "MandateIdentification": "4JJSOSHR4LAO",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Dubai Football",
+        "Frequency": "Monthly"
+      },
+      {
+        "DirectDebitId": "QCQFSAOXEJ2F2EL",
+        "AccountId": "ACC_9ZZVIVO4ME",
+        "MandateIdentification": "ZBJ6TC5RPNYL",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Abu Dhabi Conference Center",
+        "PreviousPaymentDateTime": "2024-12-08T15:54:42.603Z",
+        "Frequency": "Monthly",
+        "PreviousPaymentAmount": {
+          "Amount": "2343",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "FPT5HVOTMPWN6VV",
+        "AccountId": "ACC_ANE4IMEK3O",
+        "MandateIdentification": "JFBPHDT2EYOJ",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Dubai Home Center",
+        "PreviousPaymentDateTime": "2023-12-27T15:34:59.593Z",
+        "Frequency": "Quarterly",
+        "PreviousPaymentAmount": {
+          "Amount": "1580",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "BDOFLIOZRQLLLW5",
+        "AccountId": "ACC_QTYESCDJNC",
+        "MandateIdentification": "VJDBBGOEB9RN",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Sharjah Pet Grooming",
+        "PreviousPaymentDateTime": "2024-05-05T23:36:08.276Z",
+        "Frequency": "NotKnown",
+        "PreviousPaymentAmount": {
+          "Amount": "3025",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "GXBXASCSXBNNENH",
+        "AccountId": "ACC_M8Z4FRISYH",
+        "MandateIdentification": "ECCZRQODQTPP",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Dubai Pet Meeting Center",
+        "PreviousPaymentDateTime": "2024-11-29T05:53:51.247Z",
+        "Frequency": "Quarterly",
+        "PreviousPaymentAmount": {
+          "Amount": "4577",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "OBAJSZ3GGGCOV71",
+        "AccountId": "ACC_NPMMX3FGKD",
+        "MandateIdentification": "K7OJVEHX3SZV",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Sharjah Restaurant",
+        "PreviousPaymentDateTime": "2023-11-30T17:16:38.705Z",
+        "Frequency": "Daily",
+        "PreviousPaymentAmount": {
+          "Amount": "277",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "AFOVD7OZ7WLSF7Y",
+        "AccountId": "ACC_TZGEGD16M5",
+        "MandateIdentification": "AOPZI1CQWTDH",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Abu Dhabi Counseling Center",
+        "PreviousPaymentDateTime": "2025-01-13T16:50:00.532Z",
+        "Frequency": "Quarterly",
+        "PreviousPaymentAmount": {
+          "Amount": "3330",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "XWLXRWVZKIWEGPG",
+        "AccountId": "ACC_5ARILIZT7X",
+        "MandateIdentification": "0HEKV30MRDVM",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Abu Dhabi Insurance Center",
+        "PreviousPaymentDateTime": "2024-07-19T01:56:55.643Z",
+        "Frequency": "Weekly",
+        "PreviousPaymentAmount": {
+          "Amount": "3788",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "SSACR1BYDIAKOUI",
+        "AccountId": "ACC_HSEJMTDPHR",
+        "MandateIdentification": "GDESDAXCSCI5",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Dubai Pet Grooming",
+        "PreviousPaymentDateTime": "2025-07-06T21:57:40.727Z",
+        "Frequency": "Weekly",
+        "PreviousPaymentAmount": {
+          "Amount": "184",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "9SUIZQRO1X1K3XH",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "MandateIdentification": "OPXDDSQRS2NC",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Sharjah Property Center",
+        "PreviousPaymentDateTime": "2024-02-15T12:52:21.804Z",
+        "Frequency": "NotKnown",
+        "PreviousPaymentAmount": {
+          "Amount": "3847",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "NXA77BPUKEF4IAQ",
+        "AccountId": "ACC_9ZZVIVO4ME",
+        "MandateIdentification": "XECXYHUVET77",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Dubai Garden Center",
+        "PreviousPaymentDateTime": "2024-09-15T00:10:23.134Z",
+        "Frequency": "Fortnightly",
+        "PreviousPaymentAmount": {
+          "Amount": "2182",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "R82XQZDYEYMUPTO",
+        "AccountId": "ACC_ANE4IMEK3O",
+        "MandateIdentification": "AIZB1FPWJQ4Z",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Dubai Pet Pharmacy",
+        "PreviousPaymentDateTime": "2024-04-21T14:57:53.326Z",
+        "Frequency": "HalfYearly",
+        "PreviousPaymentAmount": {
+          "Amount": "4774",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "Q4XWLORG13F4Z6B",
+        "AccountId": "ACC_QTYESCDJNC",
+        "MandateIdentification": "DOCYDUPORHTY",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Abu Dhabi Pet Plant Center",
+        "PreviousPaymentDateTime": "2025-04-27T15:14:41.373Z",
+        "Frequency": "Weekly",
+        "PreviousPaymentAmount": {
+          "Amount": "271",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "9LELHJTYFTF0XAO",
+        "AccountId": "ACC_M8Z4FRISYH",
+        "MandateIdentification": "Q4HADGNMBWPO",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Abu Dhabi Cricket",
+        "PreviousPaymentDateTime": "2025-08-05T07:23:52.512Z",
+        "Frequency": "HalfYearly",
+        "PreviousPaymentAmount": {
+          "Amount": "1827",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "QHEHY0PXIOCDRWV",
+        "AccountId": "ACC_NPMMX3FGKD",
+        "MandateIdentification": "SP1VBFDMRUEU",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Dubai Pet Fitness Center",
+        "PreviousPaymentDateTime": "2024-04-19T00:01:12.046Z",
+        "Frequency": "Daily",
+        "PreviousPaymentAmount": {
+          "Amount": "277",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "1W6MHXNAW31H2CZ",
+        "AccountId": "ACC_TZGEGD16M5",
+        "MandateIdentification": "5WLJXD52W4GS",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Dubai Mental Health Center",
+        "PreviousPaymentDateTime": "2025-08-28T03:09:10.617Z",
+        "Frequency": "Daily",
+        "PreviousPaymentAmount": {
+          "Amount": "1667",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "D0GYGJNHVYZ1VRS",
+        "AccountId": "ACC_5ARILIZT7X",
+        "MandateIdentification": "WXQSAX3TRRBT",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Al Hilal Bank",
+        "PreviousPaymentDateTime": "2024-07-19T23:18:18.837Z",
+        "Frequency": "Annual",
+        "PreviousPaymentAmount": {
+          "Amount": "4013",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "DIDOQCVYEMRSXBD",
+        "AccountId": "ACC_HSEJMTDPHR",
+        "MandateIdentification": "JJ3UAWDF5VTX",
+        "DirectDebitStatusCode": "Inactive",
+        "Name": "Sharjah Museum",
+        "PreviousPaymentDateTime": "2025-03-05T21:22:06.406Z",
+        "Frequency": "Daily",
+        "PreviousPaymentAmount": {
+          "Amount": "1310",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "D0GYGJNHVYZ1VRS",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "MandateIdentification": "QBFFPDBIKUU2",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Dubai Flower Center",
+        "PreviousPaymentDateTime": "2024-10-17T02:14:12.989Z",
+        "Frequency": "Monthly",
+        "PreviousPaymentAmount": {
+          "Amount": "1405",
+          "Currency": "AED"
+        }
+      },
+      {
+        "DirectDebitId": "EWDSB0EDEHLWSDD",
+        "AccountId": "ACC_9ZZVIVO4ME",
+        "MandateIdentification": "MQVH9E2FOVL4",
+        "DirectDebitStatusCode": "Active",
+        "Name": "Sharjah Sports Center",
+        "Frequency": "Quarterly"
+      }
+    ],
+    "AccountId": "ACC_COMBINED"
+  },
+  "Meta": {
+    "TotalPages": 1
+  },
+  "Links": {
+    "Self": "https://rs1.altareq1.sandbox.apihub.openfinance.ae/open-finance/account-information/v1.2/accounts/direct-debits"
+  }
+}

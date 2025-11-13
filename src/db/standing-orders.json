@@ -1,0 +1,721 @@
+{
+  "Data": {
+    "StandingOrder": [
+      {
+        "StandingOrderId": "1ZM64VPDNEM4ASO",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "Frequency": "IntervalWeekDay:1:1",
+        "FirstPaymentDateTime": "2026-06-23T20:31:23.498Z",
+        "LastPaymentDateTime": "2026-01-02T03:42:19.463Z",
+        "FinalPaymentDateTime": "2026-04-30T20:38:45.186Z",
+        "NumberOfPayments": "80",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "49187",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "27560",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "36668",
+          "Currency": "AED"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "EWallet",
+            "Identification": "IRBCE0QJPHXV1"
+          },
+          {
+            "SchemeName": "AccountNumber",
+            "Identification": "V22M9LPDFJNW7"
+          },
+          {
+            "SchemeName": "EWallet",
+            "Identification": "5HOULEMUHMGUS1"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "NUDMBYUOZ6A5ICR",
+        "AccountId": "ACC_9ZZVIVO4ME",
+        "Frequency": "WeekInMonthDay:2:5",
+        "FirstPaymentDateTime": "2026-05-16T21:35:35.388Z",
+        "FinalPaymentDateTime": "2026-07-16T19:20:10.199Z",
+        "NumberOfPayments": "71",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "15877",
+          "Currency": "AED"
+        },
+        "SupplementaryData": {},
+        "NextPaymentAmount": {
+          "Amount": "42481",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "LocalBankTransfer"
+      },
+      {
+        "StandingOrderId": "UUY7CIALUMFQQXY",
+        "AccountId": "ACC_ANE4IMEK3O",
+        "Frequency": "IntervalWeekDay:4:3",
+        "FirstPaymentDateTime": "2026-10-31T18:30:06.025Z",
+        "NextPaymentDateTime": "2026-08-18T09:57:20.121Z",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "21656",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "37170",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "7025",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "35117",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "BetweenMyAccounts",
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "MASRAFUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "T6689IRTHTKXRRWJEVZ"
+          },
+          {
+            "SchemeName": "EWallet",
+            "Identification": "LZFGGZICFLRT4"
+          },
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "9UUZHNI9HEC3SPDXL3PO"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "N8UJUNRE47LBODJ",
+        "AccountId": "ACC_QTYESCDJNC",
+        "Frequency": "WeekInMonthDay:1:1",
+        "FirstPaymentDateTime": "2026-07-19T21:28:30.985Z",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "42883",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "34134",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "18031",
+          "Currency": "AED"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "UtilityName",
+            "Identification": "PTEK5QARSXWNEZO9YHOFMLBAT"
+          },
+          {
+            "SchemeName": "IBAN",
+            "Identification": "FVWINFPSNM1WIVXNBXXDQVOQ"
+          },
+          {
+            "SchemeName": "EWallet",
+            "Identification": "GNGDQTXQRCSQZHBABJ"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "KH1RJJCNYDKXA2C",
+        "AccountId": "ACC_M8Z4FRISYH",
+        "Frequency": "IntervalMonthDay:1:1",
+        "FirstPaymentDateTime": "2026-08-19T05:08:08.820Z",
+        "NextPaymentDateTime": "2026-01-08T21:42:14.062Z",
+        "LastPaymentDateTime": "2025-12-04T06:29:09.314Z",
+        "FinalPaymentDateTime": "2026-03-10T23:46:40.425Z",
+        "NumberOfPayments": "5",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "25394",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "9251",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "ENBDUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "EWallet",
+            "Identification": "1QP0H6R5HDN4HIY92"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "EVKWA6SETIL7VK0",
+        "AccountId": "ACC_NPMMX3FGKD",
+        "Frequency": "IntervalDay:30",
+        "FirstPaymentDateTime": "2026-05-31T04:15:12.897Z",
+        "NumberOfPayments": "36",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "15336",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "14886",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "1943",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "ADIBUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "UtilityName",
+            "Identification": "8TJQK7HCT4WRT"
+          },
+          {
+            "SchemeName": "MobileNumber",
+            "Identification": "3LTMMXTZF84NEWGYTT"
+          },
+          {
+            "SchemeName": "AccountNumber",
+            "Identification": "LQ5OPXEKTBTW8LKIPFNBYBRLL"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "LQ7HOSBLDA5KR6Z",
+        "AccountId": "ACC_TZGEGD16M5",
+        "Frequency": "WeekInMonthDay:1:1",
+        "FirstPaymentDateTime": "2026-10-10T09:40:06.537Z",
+        "NextPaymentDateTime": "2026-08-22T11:30:52.441Z",
+        "FinalPaymentDateTime": "2026-09-13T12:40:00.343Z",
+        "NumberOfPayments": "55",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "29518",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "16636",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "20699",
+          "Currency": "AED"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "PZOQMSXYQJPHF11H8KTT8AL"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "VDKAMNHT7BYYBAC",
+        "AccountId": "ACC_5ARILIZT7X",
+        "Frequency": "QuarterDay:RECEIVED",
+        "FirstPaymentDateTime": "2026-04-02T15:02:22.906Z",
+        "LastPaymentDateTime": "2025-11-13T23:46:18.706Z",
+        "NumberOfPayments": "33",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "28274",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "15284",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "20765",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "HSBCUAEXXXX"
+        }
+      },
+      {
+        "StandingOrderId": "JCVXSEPRZU1V6KV",
+        "AccountId": "ACC_HSEJMTDPHR",
+        "Frequency": "IntervalDay:14",
+        "FirstPaymentDateTime": "2026-05-09T13:41:59.940Z",
+        "NumberOfPayments": "68",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "12939",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "12939",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "LocalBankTransfer",
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "CITIUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "EWallet",
+            "Identification": "DEVWZLNBCQZOZEY"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "YW0HFHZJP162CQL",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "Frequency": "IntervalMonthDay:3:1",
+        "FirstPaymentDateTime": "2026-06-23T17:52:38.238Z",
+        "NextPaymentDateTime": "2026-07-26T23:57:27.873Z",
+        "LastPaymentDateTime": "2025-12-23T04:27:45.222Z",
+        "FinalPaymentDateTime": "2026-01-26T08:46:58.416Z",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "35117",
+          "Currency": "AED"
+        },
+        "SupplementaryData": {},
+        "NextPaymentAmount": {
+          "Amount": "4361",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "14365",
+          "Currency": "AED"
+        }
+      },
+      {
+        "StandingOrderId": "IXAYLDJVF5XVG8C",
+        "AccountId": "ACC_9ZZVIVO4ME",
+        "Frequency": "IntervalWeekDay:1:1",
+        "FirstPaymentDateTime": "2025-11-15T22:49:03.111Z",
+        "NextPaymentDateTime": "2025-11-26T19:01:18.867Z",
+        "LastPaymentDateTime": "2026-09-09T19:28:21.769Z",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "16445",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "49143",
+          "Currency": "AED"
+        },
+        "SupplementaryData": {},
+        "NextPaymentAmount": {
+          "Amount": "17354",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "31592",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "NBFUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "UtilityName",
+            "Identification": "QO5AX7ZKC4WQU"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "XYVBWBJ9XPAFUHG",
+        "AccountId": "ACC_ANE4IMEK3O",
+        "Frequency": "IntervalMonthDay:3:1",
+        "FirstPaymentDateTime": "2026-10-14T20:12:07.155Z",
+        "NumberOfPayments": "71",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "15284",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "43905",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "37422",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "InternationalTransfer",
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "BOSUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "MobileNumber",
+            "Identification": "67AZC30TRIDTUPBEVWZGUV"
+          },
+          {
+            "SchemeName": "UtilityName",
+            "Identification": "VZJ7NV9LKAKZ"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "IRGFRF9PIC2HUMN",
+        "AccountId": "ACC_QTYESCDJNC",
+        "Frequency": "IntervalMonthDay:1:15",
+        "FirstPaymentDateTime": "2026-07-31T05:00:50.992Z",
+        "LastPaymentDateTime": "2026-04-20T13:28:35.847Z",
+        "NumberOfPayments": "91",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "6193",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "6775",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "41772",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "SIBUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "IBAN",
+            "Identification": "2FV4S83ROCQHZPPUK"
+          },
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "DNE0K0FZMBM9RJ2ZL"
+          },
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "VL9F9NZUGCORMDKGDKQES"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "I4TVNA59MNAPAU5",
+        "AccountId": "ACC_M8Z4FRISYH",
+        "Frequency": "IntervalDay:14",
+        "FirstPaymentDateTime": "2026-08-21T12:53:03.445Z",
+        "LastPaymentDateTime": "2026-03-19T15:33:18.275Z",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "36428",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "1468",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "5910",
+          "Currency": "AED"
+        }
+      },
+      {
+        "StandingOrderId": "X0YYCRRPJ9DSKTE",
+        "AccountId": "ACC_NPMMX3FGKD",
+        "Frequency": "IntervalWeekDay:2:5",
+        "FirstPaymentDateTime": "2026-10-21T19:21:10.353Z",
+        "NextPaymentDateTime": "2026-03-11T00:02:31.781Z",
+        "LastPaymentDateTime": "2026-10-20T20:49:20.227Z",
+        "FinalPaymentDateTime": "2026-04-18T00:10:55.218Z",
+        "NumberOfPayments": "73",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "32957",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "29532",
+          "Currency": "AED"
+        },
+        "SupplementaryData": {},
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "INVESTUAEXXXX"
+        }
+      },
+      {
+        "StandingOrderId": "SFPF2FXA3G9WFFG",
+        "AccountId": "ACC_TZGEGD16M5",
+        "Frequency": "EveryDay",
+        "FirstPaymentDateTime": "2025-12-23T06:58:57.402Z",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "42481",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "28274",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "18758",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "37422",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "INVESTUAEXXXX"
+        }
+      },
+      {
+        "StandingOrderId": "IYIE0LLRRGPII13",
+        "AccountId": "ACC_5ARILIZT7X",
+        "Frequency": "WeekInMonthDay:1:1",
+        "FirstPaymentDateTime": "2026-08-24T21:13:17.637Z",
+        "NextPaymentDateTime": "2026-01-14T07:15:39.639Z",
+        "FinalPaymentDateTime": "2026-10-13T06:08:01.816Z",
+        "NumberOfPayments": "2",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "4361",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "BetweenMyAccounts",
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "EIBUAEXXXX"
+        }
+      },
+      {
+        "StandingOrderId": "YJ8DQPVH1WHYIV8",
+        "AccountId": "ACC_HSEJMTDPHR",
+        "Frequency": "IntervalMonthDay:1:1",
+        "FirstPaymentDateTime": "2026-08-15T23:13:06.811Z",
+        "NextPaymentDateTime": "2026-05-17T23:14:43.438Z",
+        "FinalPaymentDateTime": "2026-04-02T08:25:10.755Z",
+        "NumberOfPayments": "9",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "7025",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "44052",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "BetweenMyAccounts",
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "HILALUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "9JQN3KJEAPZVXUDUXUDN"
+          },
+          {
+            "SchemeName": "EWallet",
+            "Identification": "QO5AX7ZKC4WQU"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "UGG9Q1NE9GFS1VH",
+        "AccountId": "ACC_L7YC9M5NX2",
+        "Frequency": "EveryDay",
+        "FirstPaymentDateTime": "2026-02-23T15:21:27.460Z",
+        "NextPaymentDateTime": "2026-02-03T05:12:51.170Z",
+        "LastPaymentDateTime": "2025-12-15T08:46:41.342Z",
+        "FinalPaymentDateTime": "2026-08-18T10:36:32.815Z",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "814",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "23232",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "43940",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "InternationalTransfer",
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "CBIUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "EWallet",
+            "Identification": "WGM5PAD4X8GMNFEQWYXYEG36A"
+          },
+          {
+            "SchemeName": "AccountNumber",
+            "Identification": "51J8VDD5LFNZJLSC59"
+          },
+          {
+            "SchemeName": "MaskedPAN",
+            "Identification": "LYODCIVY7ZDX9"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "U7UVHUVR4IHCGGF",
+        "AccountId": "ACC_9ZZVIVO4ME",
+        "Frequency": "WeekInMonthDay:2:5",
+        "FirstPaymentDateTime": "2026-07-22T06:30:42.701Z",
+        "NextPaymentDateTime": "2026-10-18T01:49:56.320Z",
+        "LastPaymentDateTime": "2026-01-16T14:05:48.541Z",
+        "FinalPaymentDateTime": "2026-09-23T19:31:41.748Z",
+        "NumberOfPayments": "36",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "5910",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "34244",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "CBIUAEXXXX"
+        }
+      },
+      {
+        "StandingOrderId": "RXGZNSUH8Z4NLXU",
+        "AccountId": "ACC_ANE4IMEK3O",
+        "Frequency": "Annual",
+        "FirstPaymentDateTime": "2026-06-10T10:14:07.466Z",
+        "LastPaymentDateTime": "2026-02-16T05:12:32.060Z",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "42883",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "42481",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "24893",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "Charity",
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "BOSUAEXXXX"
+        }
+      },
+      {
+        "StandingOrderId": "NGE6XTJ7YLZ3JTB",
+        "AccountId": "ACC_QTYESCDJNC",
+        "Frequency": "IntervalDay:14",
+        "FirstPaymentDateTime": "2026-08-06T14:42:14.110Z",
+        "FinalPaymentDateTime": "2026-09-04T02:34:37.854Z",
+        "NumberOfPayments": "59",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "16636",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "5716",
+          "Currency": "AED"
+        },
+        "SupplementaryData": {},
+        "NextPaymentAmount": {
+          "Amount": "5716",
+          "Currency": "AED"
+        },
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "RAKBUAEXXXX"
+        }
+      },
+      {
+        "StandingOrderId": "UEZZO77YANCETZL",
+        "AccountId": "ACC_M8Z4FRISYH",
+        "Frequency": "IntervalDay:14",
+        "FirstPaymentDateTime": "2026-07-25T21:51:31.521Z",
+        "LastPaymentDateTime": "2026-07-10T05:51:22.499Z",
+        "FinalPaymentDateTime": "2026-04-03T02:00:01.156Z",
+        "StandingOrderStatusCode": "Inactive",
+        "FirstPaymentAmount": {
+          "Amount": "7025",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "17464",
+          "Currency": "AED"
+        },
+        "NextPaymentAmount": {
+          "Amount": "37170",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "1943",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "SameBankTransfer",
+        "CreditorAgent": {
+          "SchemeName": "Other",
+          "Identification": "CITIUAEXXXX"
+        },
+        "CreditorAccount": [
+          {
+            "SchemeName": "AccountNumber",
+            "Identification": "HIYBVOHBFF"
+          }
+        ]
+      },
+      {
+        "StandingOrderId": "OOHYYZK55WQ5HBF",
+        "AccountId": "ACC_NPMMX3FGKD",
+        "Frequency": "WeekInMonthDay:2:5",
+        "FirstPaymentDateTime": "2026-09-23T11:11:24.706Z",
+        "NextPaymentDateTime": "2026-09-13T21:53:49.234Z",
+        "LastPaymentDateTime": "2026-06-23T08:35:51.162Z",
+        "NumberOfPayments": "100",
+        "StandingOrderStatusCode": "Active",
+        "FirstPaymentAmount": {
+          "Amount": "9142",
+          "Currency": "AED"
+        },
+        "FinalPaymentAmount": {
+          "Amount": "5157",
+          "Currency": "AED"
+        },
+        "LastPaymentAmount": {
+          "Amount": "37170",
+          "Currency": "AED"
+        },
+        "StandingOrderType": "LocalBankTransfer"
+      }
+    ],
+    "AccountId": "ACC_COMBINED"
+  },
+  "Meta": {
+    "TotalPages": 1
+  },
+  "Links": {
+    "Self": "https://rs1.altareq1.sandbox.apihub.openfinance.ae/open-finance/account-information/v1.2/accounts/standing-orders"
+  }
+}

@@ -23,6 +23,13 @@ const Presentation = () => {
     setCurrentSection(section);
   };
 
+  const sections = [
+    { id: 1, name: 'API Integration', icon: '🔗' },
+    { id: 2, name: 'Data Overview', icon: '📊' },
+    { id: 3, name: 'AI Engine', icon: '🤖' },
+    { id: 4, name: 'Dashboard', icon: '💻' }
+  ];
+
   return (
     <div className="presentation-container">
       {/* Navigation Dots */}
@@ -130,6 +137,22 @@ const Presentation = () => {
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
               </button>
+              <div className="section-index">
+                <div className="index-title">Jump to:</div>
+                <div className="index-items">
+                  {sections.map((section) => (
+                    <div
+                      key={section.id}
+                      className={`index-item ${currentSection === section.id ? 'active' : ''}`}
+                      onClick={() => goToSection(section.id)}
+                      title={section.name}
+                    >
+                      <span className="index-icon">{section.icon}</span>
+                      <span className="index-name">{section.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -139,7 +162,7 @@ const Presentation = () => {
       {currentSection === 2 && (
         <div className="presentation-section section-2">
           <div className="section-content">
-            <h1 className="section-title">Understanding the Data</h1>
+            <h1 className="section-title">Data Overview</h1>
             <p className="section-subtitle">What we receive from Open Finance APIs</p>
 
             <div className="data-info">
@@ -251,88 +274,72 @@ const Presentation = () => {
             </div>
 
             <div className="realistic-data-section">
-              <h2 className="samples-title">Realistic Data Comparison</h2>
-              <p className="samples-description">Data obtained using Lean Technologies integrations with actual banks, enhanced with our AI-powered categorization engine:</p>
+              <h2 className="samples-title">Realistic Data from Lean Technologies</h2>
+              <p className="samples-description">Raw transaction data obtained from actual bank integrations:</p>
               
               <div className="table-wrapper">
                 <table className="data-table">
                   <thead>
                     <tr>
-                      <th>Field</th>
-                      <th>Example 1</th>
-                      <th>Example 2</th>
-                      <th>Example 3</th>
-                      <th>Example 4</th>
-                      <th>Example 5</th>
+                      <th>Example</th>
+                      <th>Description (Raw)</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>ID</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><strong>Raw Description</strong></td>
+                      <td><strong>1</strong></td>
                       <td>CARD TRANSACTION 07AUG25 V DEBIT 006837AED 49.00 Card Ending with 4004 Netflix.com A89517135</td>
-                      <td>Visa Purchase : 259 0829 706956 LULUHYPERMARKET QUSAIS AED DUBAI AED 5 0829</td>
-                      <td>PUR 30/08 DUBAI ELEC DUBAI 1514</td>
-                      <td>ETIHAD AIRW 6072412674870 ABU DHABI</td>
-                      <td>Visa Purchase : 259 0829 737761 MCDONALDS-AL BUSTAN CN AED DUBAI AED 28 0829</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Cleaned Description</strong></td>
-                      <td>Netflix.com</td>
-                      <td>Lulu Hypermarket - Qusais</td>
-                      <td>Dubai Electricity</td>
-                      <td>Etihad Airways</td>
-                      <td>McDonald's - Al Bustan</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Merchant Detected</strong></td>
-                      <td className="merchant-name">Netflix</td>
-                      <td className="merchant-name">Lulu Hypermarket</td>
-                      <td className="merchant-name">DEWA</td>
-                      <td className="merchant-name">Etihad Airways</td>
-                      <td className="merchant-name">McDonald's</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Category</strong></td>
-                      <td>Bills / Utilities</td>
-                      <td>Food & Dining</td>
-                      <td>Bills / Utilities</td>
-                      <td>Travel</td>
-                      <td>Food & Dining</td>
-                    </tr>
-                    <tr>
-                      <td><strong>SubCategory</strong></td>
-                      <td>Cable</td>
-                      <td>Groceries</td>
-                      <td>Electricity & Water</td>
-                      <td>Airline Tickets</td>
-                      <td className="no-data">N/A</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Amount</strong></td>
+                      <td>Nov 7, 2025 14:32</td>
                       <td className="amount-debit">-73.23 AED</td>
-                      <td className="amount-debit">-308.50 AED</td>
-                      <td className="amount-debit">-419.90 AED</td>
-                      <td className="amount-debit">-8,624.19 AED</td>
-                      <td className="amount-debit">-28.00 AED</td>
+                      <td className="status-booked">BOOKED</td>
+                      <td>3619d7cc-761e-4092-8bf5-c4506f408928</td>
                     </tr>
                     <tr>
-                      <td><strong>Status</strong></td>
+                      <td><strong>2</strong></td>
+                      <td>Visa Purchase : 259 0829 706956 LULUHYPERMARKET QUSAIS AED DUBAI AED 5 0829</td>
+                      <td>Nov 8, 2025 09:15</td>
+                      <td className="amount-debit">-308.50 AED</td>
                       <td className="status-booked">BOOKED</td>
+                      <td>f8a2b1d9-3c4e-5f6a-7b8c-9d0e1f2a3b4c</td>
+                    </tr>
+                    <tr>
+                      <td><strong>3</strong></td>
+                      <td>PUR 30/08 DUBAI ELEC DUBAI 1514</td>
+                      <td>Aug 30, 2025 11:48</td>
+                      <td className="amount-debit">-419.90 AED</td>
                       <td className="status-booked">BOOKED</td>
+                      <td>a1b2c3d4-e5f6-7890-abcd-ef1234567890</td>
+                    </tr>
+                    <tr>
+                      <td><strong>4</strong></td>
+                      <td>ETIHAD AIRW 6072412674870 ABU DHABI</td>
+                      <td>Sep 15, 2025 16:20</td>
+                      <td className="amount-debit">-8,624.19 AED</td>
                       <td className="status-booked">BOOKED</td>
+                      <td>9876fedc-ba98-7654-3210-fedcba987654</td>
+                    </tr>
+                    <tr>
+                      <td><strong>5</strong></td>
+                      <td>Visa Purchase : 259 0829 737761 MCDONALDS-AL BUSTAN CN AED DUBAI AED 28 0829</td>
+                      <td>Oct 12, 2025 19:05</td>
+                      <td className="amount-debit">-28.00 AED</td>
                       <td className="status-booked">BOOKED</td>
-                      <td className="status-booked">BOOKED</td>
+                      <td>5d6e7f8a-9b0c-1d2e-3f4a-5b6c7d8e9f0a</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
               <div className="data-benefits">
-                <h3>✅ Improvements with Real Bank Data + Our AI:</h3>
+                <h3>📋 What We Receive from Banks:</h3>
                 <ul>
-                  <li>✅ <strong>AI-powered merchant detection:</strong> Our engine extracts merchant names from messy bank descriptions (e.g., "LULUHYPERMARKET QUSAIS" → "Lulu Hypermarket")</li>
-                  <li>✅ <strong>Smart text cleaning:</strong> Raw descriptions with card numbers, references, and codes are cleaned to human-readable format</li>
-                  <li>✅ <strong>Intelligent categorization:</strong> Automatic category and subcategory assignment based on merchant and transaction patterns</li>
+                  <li>🔹 <strong>Raw descriptions:</strong> Messy text with card numbers, references, and codes mixed with merchant information</li>
+                  <li>🔹 <strong>Basic transaction data:</strong> Date, amount, status, and transaction ID</li>
+                  <li>🔹 <strong>Inconsistent formatting:</strong> Each bank formats data differently, making it difficult to process</li>
                 </ul>
               </div>
             </div>
@@ -346,10 +353,10 @@ const Presentation = () => {
                 </p>
                 <ol>
                   <li><strong>Model Bank Dataset</strong> - Sandbox environment data with limitations</li>
-                  <li><strong>Realistic Dataset</strong> - More accurate data obtained using Lean Technologies integrations with actual banks, enhanced with our proprietary AI engine for merchant detection, text cleaning, and intelligent categorization</li>
+                  <li><strong>Realistic Dataset from Lean Technologies</strong> - Raw transaction data from actual bank integrations</li>
                 </ol>
                 <p className="conclusion-note">
-                  This comparison showcases the difference between test environments and real-world financial data, and demonstrates how our AI transforms raw bank descriptions into actionable insights.
+                  In the next section, we'll show how our AI engine processes this raw data to extract merchant names, clean descriptions, and add intelligent categorization.
                 </p>
               </div>
             </div>
@@ -367,6 +374,22 @@ const Presentation = () => {
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
               </button>
+              <div className="section-index">
+                <div className="index-title">Jump to:</div>
+                <div className="index-items">
+                  {sections.map((section) => (
+                    <div
+                      key={section.id}
+                      className={`index-item ${currentSection === section.id ? 'active' : ''}`}
+                      onClick={() => goToSection(section.id)}
+                      title={section.name}
+                    >
+                      <span className="index-icon">{section.icon}</span>
+                      <span className="index-name">{section.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -392,7 +415,7 @@ const Presentation = () => {
 
             <div className="ai-capabilities">
               <h2 className="capabilities-title">AI Capabilities - Product Suite</h2>
-              <p className="capabilities-subtitle">Each capability can be offered as a standalone product to banks:</p>
+              <p className="capabilities-subtitle">Each capability can be offered as a standalone product to banks or licensed financial institutions:</p>
 
               <div className="capabilities-grid">
                 <div className="capability-card">
@@ -486,6 +509,68 @@ const Presentation = () => {
               </div>
             </div>
 
+            <div className="enriched-data-section">
+              <h2 className="samples-title">AI-Enriched Data Examples</h2>
+              <p className="samples-description">The same transactions from the previous page, now processed by our AI engine:</p>
+              
+              <div className="table-wrapper">
+                <table className="data-table">
+                  <thead>
+                    <tr>
+                      <th>Raw Description</th>
+                      <th>Cleaned Description</th>
+                      <th>Category</th>
+                      <th>Subcategory</th>
+                      <th>Merchant</th>
+                      <th>Merchant Logo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>CARD TRANSACTION 07AUG25 V DEBIT 006837AED 49.00 Card Ending with 4004 Netflix.com A89517135</td>
+                      <td>Netflix.com</td>
+                      <td>Bills / Utilities</td>
+                      <td>Cable</td>
+                      <td className="merchant-name">Netflix</td>
+                      <td><img src="https://getcrunchapp-stage-s3-bucket.s3.me-central-1.amazonaws.com/1759173330094_61df4916-7578-40dd-94a0-ca563b7a0913.jpg" alt="Netflix" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                    </tr>
+                    <tr>
+                      <td>Visa Purchase : 259 0829 706956 LULUHYPERMARKET QUSAIS AED DUBAI AED 5 0829</td>
+                      <td>Lulu Hypermarket - Qusais</td>
+                      <td>Food & Dining</td>
+                      <td>Groceries</td>
+                      <td className="merchant-name">Lulu Hypermarket</td>
+                      <td><img src="https://getcrunchapp-stage-s3-bucket.s3.me-central-1.amazonaws.com/1759170808520_001fc1da-e11c-400c-af26-159c9d734435.png" alt="Lulu" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                    </tr>
+                    <tr>
+                      <td>PUR 30/08 DUBAI ELEC DUBAI 1514</td>
+                      <td>Dubai Electricity</td>
+                      <td>Bills / Utilities</td>
+                      <td>Electricity & Water</td>
+                      <td className="merchant-name">DEWA</td>
+                      <td><img src="https://backend.stage.getcrunch.app/merchant_logo/dewa.png" alt="DEWA" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                    </tr>
+                    <tr>
+                      <td>ETIHAD AIRW 6072412674870 ABU DHABI</td>
+                      <td>Etihad Airways</td>
+                      <td>Travel</td>
+                      <td>Airline Tickets</td>
+                      <td className="merchant-name">Etihad Airways</td>
+                      <td><img src="https://getcrunchapp-prod-s3-bucket.s3.me-south-1.amazonaws.com/1762801755973_c05740b6-a493-456e-b3c0-eb7280b3ecf8.png" alt="Etihad" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                    </tr>
+                    <tr>
+                      <td>Visa Purchase : 259 0829 737761 MCDONALDS-AL BUSTAN CN AED DUBAI AED 28 0829</td>
+                      <td>McDonald's - Al Bustan</td>
+                      <td>Food & Dining</td>
+                      <td>Fast Food</td>
+                      <td className="merchant-name">McDonald's</td>
+                      <td><img src="https://getcrunchapp-stage-s3-bucket.s3.me-central-1.amazonaws.com/1759173956906_f7fe9ade-68c3-4305-88fd-01792b6472a7.jpeg" alt="McDonald's" style={{width: '40px', height: '40px', objectFit: 'contain'}} /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
             <div className="real-examples-section">
               <h2 className="examples-title">Real Transaction Examples</h2>
               <p className="examples-subtitle">Live data from connection ID 11308 processed by our AI engine:</p>
@@ -520,23 +605,23 @@ const Presentation = () => {
                   <div className="transaction-header">
                     <div className="merchant-info">
                       <div className="merchant-logo">
-                        <img src="https://getcrunchapp-prod-s3-bucket.s3.me-south-1.amazonaws.com/1762843912382_e32304e5-5163-4370-a1f5-af7bea5f7bc6.png" alt="GMG Consumer" />
+                        <img src="https://backend.stage.getcrunch.app/merchant_logo/dewa.png" alt="DEWA" />
                       </div>
                       <div className="merchant-details">
-                        <h4>GMG Consumer</h4>
-                        <span className="category-tag">Shopping</span>
+                        <h4>DEWA</h4>
+                        <span className="category-tag">Bills / Utilities</span>
                       </div>
                     </div>
-                    <div className="transaction-amount debit">-199.00 AED</div>
+                    <div className="transaction-amount debit">-455.00 AED</div>
                   </div>
                   <div className="transaction-body">
                     <div className="field-row">
                       <span className="field-label">Raw:</span>
-                      <span className="field-value raw">GMG CONSUMER Card purchase</span>
+                      <span className="field-value raw">CARD TRANSACTION 10JUL25 V DEBIT 009440AED 455.00 Card Ending with 4004 DUBAI ELEC DUBAI A89521493</span>
                     </div>
                     <div className="field-row">
                       <span className="field-label">Cleaned:</span>
-                      <span className="field-value">GMG Consumer</span>
+                      <span className="field-value">Dubai Electricity</span>
                     </div>
                   </div>
                 </div>
@@ -569,7 +654,7 @@ const Presentation = () => {
             </div>
 
             <div className="use-cases-section">
-              <h2 className="use-cases-title">Unlocking Advanced Use Cases</h2>
+              <h2 className="use-cases-title">Unlocking Advanced Use Cases using similar AI models</h2>
               <p className="use-cases-subtitle">Once the data is clean and enriched, banks can build powerful features:</p>
 
               <div className="use-cases-grid">
@@ -616,9 +701,9 @@ const Presentation = () => {
                 </div>
 
                 <div className="use-case-card">
-                  <div className="use-case-icon">📈</div>
-                  <h4>Financial Planning</h4>
-                  <p>Cash flow forecasting, savings goals, and investment recommendations</p>
+                  <div className="use-case-icon">🌱</div>
+                  <h4>Carbon Footprint Tracking</h4>
+                  <p>Calculate environmental impact based on purchases - track emissions from flights, fuel, shopping, and dining to help customers make more sustainable financial decisions</p>
                 </div>
               </div>
             </div>
@@ -648,6 +733,22 @@ const Presentation = () => {
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
               </button>
+              <div className="section-index">
+                <div className="index-title">Jump to:</div>
+                <div className="index-items">
+                  {sections.map((section) => (
+                    <div
+                      key={section.id}
+                      className={`index-item ${currentSection === section.id ? 'active' : ''}`}
+                      onClick={() => goToSection(section.id)}
+                      title={section.name}
+                    >
+                      <span className="index-icon">{section.icon}</span>
+                      <span className="index-name">{section.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -681,6 +782,22 @@ const Presentation = () => {
                 </svg>
                 Back
               </button>
+              <div className="section-index">
+                <div className="index-title">Jump to:</div>
+                <div className="index-items">
+                  {sections.map((section) => (
+                    <div
+                      key={section.id}
+                      className={`index-item ${currentSection === section.id ? 'active' : ''}`}
+                      onClick={() => goToSection(section.id)}
+                      title={section.name}
+                    >
+                      <span className="index-icon">{section.icon}</span>
+                      <span className="index-name">{section.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

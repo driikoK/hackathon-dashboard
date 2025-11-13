@@ -17,6 +17,7 @@ interface CategoryData {
 
 const InsightReal = () => {
   const navigate = useNavigate();
+  const [selectedMonth, setSelectedMonth] = useState<Date>(new Date());
   const [expenseCategories, setExpenseCategories] = useState<CategoryData[]>([]);
   const [incomeCategories, setIncomeCategories] = useState<CategoryData[]>([]);
   const [totalExpense, setTotalExpense] = useState(0);
@@ -65,9 +66,97 @@ const InsightReal = () => {
     calculateCategories();
     calculateCashflow();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedMonth]);
+
+  const changeMonth = (direction: number) => {
+    setSelectedMonth(prevMonth => {
+      const newMonth = new Date(prevMonth);
+      newMonth.setMonth(prevMonth.getMonth() + direction);
+      return newMonth;
+    });
+  };
+
+  const calculateCategories = () => {
+    const year = selectedMonth.getFullYear();
+    const month = selectedMonth.getMonth();
+    const monthStart = new Date(year, month, 1);
+    const monthEnd = new Date(year, month + 1, 0, 23, 59, 59);
+    
+    const userAccountIds = new Set(accountsData.data.map((acc: any) => acc.id));
+    
+    const validTransactions = transactionsData.data.filter((t: any) => {
+      if (!userAccountIds.has(t.accountId)) return false;
+      if (t.status !== 'POSTED') return false;
+      
+      const transDate = new Date(t.transactionDate);
+      return transDate >= monthStart && transDate <= monthEnd;
+    });
+
+    const expenseMap = new Map<string, { amount: number; count: number }>();
+    const incomeMap = new Map<string, { amount: number; count: number }>();
+    
+    let totalExp = 0;
+    let totalInc = 0;
+    
+    validTransactions.forEach((t: any) => {
+      const amount = Math.abs(parseFloat(t.amount));
+      const categoryName = t.category?.name || 'Uncategorized';
+      
+      if (t.type === 'EXPENSE') {
+        totalExp += amount;
+        const current = expenseMap.get(categoryName) || { amount: 0, count: 0 };
+        expenseMap.set(categoryName, {
+          amount: current.amount + amount,
+          count: current.count + 1
+        });
+      } else if (t.type === 'INCOME') {
+        totalInc += amount;
+        const current = incomeMap.get(categoryName) || { amount: 0, count: 0 };
+        incomeMap.set(categoryName, {
+          amount: current.amount + amount,
+          count: current.count + 1
+        });
+      }
+    });
+
+    setTotalExpense(totalExp);
+    setTotalIncome(totalInc);
+
+    const expenseCats: CategoryData[] = Array.from(expenseMap.entries())
+      .map(([name, data], index) => {
+        const style = getCategoryStyle(name, index);
+        return {
+          name,
+          amount: data.amount,
+          count: data.count,
+          percentage: (data.amount / totalExp) * 100,
+          icon: style.icon,
+          color: style.color
+        };
+      })
+      .sort((a, b) => b.amount - a.amount);
+
+    const incomeCats: CategoryData[] = Array.from(incomeMap.entries())
+      .map(([name, data], index) => {
+        const style = getCategoryStyle(name, index);
+        return {
+          name,
+          amount: data.amount,
+          count: data.count,
+          percentage: (data.amount / totalInc) * 100,
+          icon: style.icon,
+          color: style.color
+        };
+      })
+      .sort((a, b) => b.amount - a.amount);
+
+    setExpenseCategories(expenseCats);
+    setIncomeCategories(incomeCats);
+  };
 
   const calculateCashflow = () => {
+    const year = selectedMonth.getFullYear();
+    const month = selectedMonth.getMonth();
     const userAccountIds = new Set(accountsData.data.map((acc: any) => acc.id));
     
     // Group transactions by month
@@ -119,69 +208,6 @@ const InsightReal = () => {
     setCashflowData(monthsArray);
   };
 
-  const calculateCategories = () => {
-    const userAccountIds = new Set(accountsData.data.map((acc: any) => acc.id));
-
-    // Filter transactions
-    const validTransactions = transactionsData.data.filter((t: any) => {
-      if (!userAccountIds.has(t.accountId)) return false;
-      if (t.status !== 'POSTED') return false;
-      return true;
-    });
-
-    // Categorize by category name
-    const expenseMap = new Map<string, { amount: number; count: number }>();
-    let expenseTotal = 0;
-
-    const incomeMap = new Map<string, { amount: number; count: number }>();
-    let incomeTotal = 0;
-
-    validTransactions.forEach((t: any) => {
-      const amount = Math.abs(parseFloat(t.amount));
-      const category = t.category?.name || 'Uncategorized';
-      
-      if (t.type === 'EXPENSE') {
-        expenseTotal += amount;
-        const current = expenseMap.get(category) || { amount: 0, count: 0 };
-        expenseMap.set(category, { amount: current.amount + amount, count: current.count + 1 });
-      } else if (t.type === 'INCOME') {
-        incomeTotal += amount;
-        const current = incomeMap.get(category) || { amount: 0, count: 0 };
-        incomeMap.set(category, { amount: current.amount + amount, count: current.count + 1 });
-      }
-    });
-
-    // Convert to arrays
-    const expenseArray: CategoryData[] = Array.from(expenseMap.entries()).map(([name, data], index) => {
-      const style = getCategoryStyle(name, index);
-      return {
-        name,
-        amount: data.amount,
-        count: data.count,
-        percentage: expenseTotal > 0 ? (data.amount / expenseTotal) * 100 : 0,
-        icon: style.icon,
-        color: style.color,
-      };
-    }).sort((a, b) => b.amount - a.amount);
-
-    const incomeArray: CategoryData[] = Array.from(incomeMap.entries()).map(([name, data], index) => {
-      const style = getCategoryStyle(name, index);
-      return {
-        name,
-        amount: data.amount,
-        count: data.count,
-        percentage: incomeTotal > 0 ? (data.amount / incomeTotal) * 100 : 0,
-        icon: style.icon,
-        color: style.color,
-      };
-    }).sort((a, b) => b.amount - a.amount);
-
-    setExpenseCategories(expenseArray);
-    setIncomeCategories(incomeArray);
-    setTotalExpense(expenseTotal);
-    setTotalIncome(incomeTotal);
-  };
-
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-AE', {
       minimumFractionDigits: 2,
@@ -228,6 +254,23 @@ const InsightReal = () => {
           </button>
           <h1 className="insight-page-title">Financial Insights</h1>
           <p className="insight-subtitle">Track your spending patterns and income sources</p>
+
+          {/* Month Selector */}
+          <div className="month-selector-modern">
+            <button className="month-nav-modern" onClick={() => changeMonth(-1)}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <h2 className="current-month-modern">
+              {selectedMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+            </h2>
+            <button className="month-nav-modern" onClick={() => changeMonth(1)}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
 
           {/* Summary Cards */}
           <div className="summary-cards-grid" style={{ marginTop: '32px' }}>
