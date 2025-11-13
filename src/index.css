@@ -17,6 +17,7 @@ body {
   background: #ffffff;
   color: #111827;
   min-height: 100vh;
+  zoom: 0.8;
 }
 
 #root {
