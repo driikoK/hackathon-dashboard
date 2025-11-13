@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 import transactionsData from '../db/transactions-real.json';
 import accountsData from '../db/accounts-real.json';
+import categoriesData from '../db/categories-real.json';
 import './Insight.css';
 
 interface CategoryData {
@@ -23,6 +24,7 @@ const InsightReal = () => {
   const [totalExpense, setTotalExpense] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
   const [cashflowData, setCashflowData] = useState<any[]>([]);
+  const [topMerchants, setTopMerchants] = useState<any[]>([]);
 
   // Color palette for categories
   const CATEGORY_COLORS = [
@@ -31,42 +33,42 @@ const InsightReal = () => {
     '#a8edea', '#fed6e3', '#c471f5', '#12c2e9'
   ];
 
-  // Icon mapping for transaction categories
-  const getCategoryStyle = (categoryName: string, index: number): { icon: string; color: string } => {
-    const lowerName = categoryName.toLowerCase();
-    
-    // Income categories
-    if (lowerName.includes('income')) 
-      return { icon: '💰', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('salary') || lowerName.includes('wage')) 
-      return { icon: '💼', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('refund')) 
-      return { icon: '↩️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    
-    // Expense categories
-    if (lowerName.includes('food') || lowerName.includes('dining')) 
-      return { icon: '🍽️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('shopping')) 
-      return { icon: '🛍️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('transport')) 
-      return { icon: '🚗', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('bill') || lowerName.includes('utility')) 
-      return { icon: '📄', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('entertainment')) 
-      return { icon: '🎬', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('health')) 
-      return { icon: '⚕️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    if (lowerName.includes('travel')) 
-      return { icon: '✈️', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-    
-    return { icon: '📊', color: CATEGORY_COLORS[index % CATEGORY_COLORS.length] };
-  };
-
   useEffect(() => {
     calculateCategories();
     calculateCashflow();
+    calculateTopMerchants();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedMonth]);
+
+  // Helper function to get parent category
+  const getParentCategory = (categoryName: string) => {
+    if (!categoryName) return { name: 'Uncategorized', icon: '📊' };
+    
+    // Find the category in the categories data
+    for (const categoryGroup of categoriesData.data) {
+      // Check if it's a parent category
+      if (categoryGroup.current.name === categoryName) {
+        return {
+          name: categoryGroup.current.name,
+          icon: categoryGroup.current.icon
+        };
+      }
+      
+      // Check if it's a subcategory
+      for (const subcat of categoryGroup.subcategories) {
+        if (subcat.name === categoryName) {
+          // Return the parent category
+          return {
+            name: categoryGroup.current.name,
+            icon: categoryGroup.current.icon
+          };
+        }
+      }
+    }
+    
+    // If not found, return the original name
+    return { name: categoryName, icon: '📊' };
+  };
 
   const changeMonth = (direction: number) => {
     setSelectedMonth(prevMonth => {
@@ -100,7 +102,11 @@ const InsightReal = () => {
     
     validTransactions.forEach((t: any) => {
       const amount = Math.abs(parseFloat(t.amount));
-      const categoryName = t.category?.name || 'Uncategorized';
+      const originalCategoryName = t.category?.name || 'Uncategorized';
+      
+      // Get parent category
+      const parentCategory = getParentCategory(originalCategoryName);
+      const categoryName = parentCategory.name;
       
       if (t.type === 'EXPENSE') {
         totalExp += amount;
@@ -124,28 +130,28 @@ const InsightReal = () => {
 
     const expenseCats: CategoryData[] = Array.from(expenseMap.entries())
       .map(([name, data], index) => {
-        const style = getCategoryStyle(name, index);
+        const parentCategory = getParentCategory(name);
         return {
           name,
           amount: data.amount,
           count: data.count,
           percentage: (data.amount / totalExp) * 100,
-          icon: style.icon,
-          color: style.color
+          icon: parentCategory.icon,
+          color: CATEGORY_COLORS[index % CATEGORY_COLORS.length]
         };
       })
       .sort((a, b) => b.amount - a.amount);
 
     const incomeCats: CategoryData[] = Array.from(incomeMap.entries())
       .map(([name, data], index) => {
-        const style = getCategoryStyle(name, index);
+        const parentCategory = getParentCategory(name);
         return {
           name,
           amount: data.amount,
           count: data.count,
           percentage: (data.amount / totalInc) * 100,
-          icon: style.icon,
-          color: style.color
+          icon: parentCategory.icon,
+          color: CATEGORY_COLORS[index % CATEGORY_COLORS.length]
         };
       })
       .sort((a, b) => b.amount - a.amount);
@@ -204,6 +210,53 @@ const InsightReal = () => {
     }
 
     setCashflowData(monthsArray);
+  };
+
+  const calculateTopMerchants = () => {
+    const year = selectedMonth.getFullYear();
+    const month = selectedMonth.getMonth();
+    const monthStart = new Date(year, month, 1);
+    const monthEnd = new Date(year, month + 1, 0, 23, 59, 59);
+    
+    const userAccountIds = new Set(accountsData.data.map((acc: any) => acc.id));
+    
+    const validTransactions = transactionsData.data.filter((t: any) => {
+      if (!userAccountIds.has(t.accountId)) return false;
+      if (t.status !== 'POSTED') return false;
+      if (t.type !== 'EXPENSE') return false; // Only expenses for merchants
+      
+      const transDate = new Date(t.transactionDate);
+      return transDate >= monthStart && transDate <= monthEnd;
+    });
+
+    // Group by merchant
+    const merchantMap = new Map<string, { count: number; amount: number; logo: string | null }>();
+    
+    validTransactions.forEach((t: any) => {
+      const merchantName = t.merchant?.name || t.description || 'Unknown Merchant';
+      const amount = Math.abs(parseFloat(t.amount));
+      const logo = t.merchant?.logo || null;
+      
+      const current = merchantMap.get(merchantName) || { count: 0, amount: 0, logo };
+      merchantMap.set(merchantName, {
+        count: current.count + 1,
+        amount: current.amount + amount,
+        logo: current.logo || logo
+      });
+    });
+
+    // Convert to array and sort by amount
+    const merchantsArray = Array.from(merchantMap.entries())
+      .map(([name, data]) => ({
+        name,
+        count: data.count,
+        amount: data.amount,
+        logo: data.logo
+      }))
+      .sort((a, b) => b.amount - a.amount)
+      .slice(0, 10); // Top 10 merchants
+
+    setTopMerchants(merchantsArray);
   };
 
   const formatCurrency = (amount: number) => {
@@ -613,6 +666,51 @@ const InsightReal = () => {
               </div>
             </div>
           )}
+
+          {/* Top Merchants Section */}
+          <h2 className="section-title-insight" style={{ marginTop: '60px' }}>Top Merchants</h2>
+          
+          <div className="top-merchants-card">
+            {topMerchants.length === 0 ? (
+              <div className="empty-state-modern">
+                <div className="empty-icon-modern">🏪</div>
+                <p>No merchant data available</p>
+              </div>
+            ) : (
+              <div className="merchants-list-modern">
+                {topMerchants.map((merchant, index) => (
+                  <div key={merchant.name} className="merchant-item-modern">
+                    <div className="merchant-rank">{index + 1}</div>
+                    <div className="merchant-icon-modern">
+                      {merchant.logo ? (
+                        <img src={merchant.logo} alt={merchant.name} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                      ) : (
+                        <span style={{ fontSize: '24px' }}>🏪</span>
+                      )}
+                    </div>
+                    <div className="merchant-details-modern">
+                      <div className="merchant-name-modern">{merchant.name}</div>
+                      <div className="merchant-stats">
+                        <span className="merchant-frequency">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                          </svg>
+                          {merchant.count} transaction{merchant.count > 1 ? 's' : ''}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="merchant-amount-modern">
+                      <div className="merchant-total">{formatCurrency(merchant.amount)} AED</div>
+                      <div className="merchant-average">{formatCurrency(merchant.amount / merchant.count)} avg</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
         </div>
       </div>

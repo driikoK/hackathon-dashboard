@@ -6,6 +6,7 @@ import Accounts from './pages/Accounts';
 import AccountDetail from './pages/AccountDetail';
 import Insight from './pages/Insight';
 import RecurringPayments from './pages/RecurringPayments';
+import RecurringCalendar from './pages/RecurringCalendar';
 import AccountsReal from './pages/AccountsReal';
 import AccountDetailReal from './pages/AccountDetailReal';
 import InsightReal from './pages/InsightReal';
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/model-dataset/account/:accountId" element={<AccountDetail />} />
                 <Route path="/model-dataset/insight" element={<Insight />} />
                 <Route path="/model-dataset/recurring-payments" element={<RecurringPayments />} />
+                <Route path="/recurring-calendar" element={<RecurringCalendar />} />
                 <Route path="/real-dataset/accounts" element={<AccountsReal />} />
                 <Route path="/real-dataset/account/:accountId" element={<AccountDetailReal />} />
                 <Route path="/real-dataset/insight" element={<InsightReal />} />

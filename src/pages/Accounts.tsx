@@ -352,6 +352,7 @@ const Accounts = () => {
                   style={{ fontSize: '12px' }}
                   tickLine={false}
                   tickFormatter={(value) => `${(value / 1000).toFixed(0)}k`}
+                  domain={[0, 250000]}
                 />
                 <Tooltip 
                   contentStyle={{
@@ -361,21 +362,36 @@ const Accounts = () => {
                     padding: '12px',
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
                   }}
-                  formatter={(value: number) => `AED ${value.toLocaleString()}`}
-                />
-                <Area 
-                  type="monotone" 
-                  dataKey="assets" 
-                  stroke="#10b981" 
-                  strokeWidth={2}
-                  fill="url(#colorAssets)" 
-                />
-                <Area 
-                  type="monotone" 
-                  dataKey="debt" 
-                  stroke="#ef4444" 
-                  strokeWidth={2}
-                  fill="url(#colorDebt)" 
+                  formatter={(value: number, name: string) => {
+                    if (name === 'netWorth') return [`AED ${value.toLocaleString()}`, 'Net Worth'];
+                    return null;
+                  }}
+                  content={({ active, payload }) => {
+                    if (active && payload && payload.length) {
+                      const data = payload[0].payload;
+                      return (
+                        <div style={{
+                          backgroundColor: 'white',
+                          border: '1px solid #e5e7eb',
+                          borderRadius: '12px',
+                          padding: '12px',
+                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+                        }}>
+                          <p style={{ margin: '0 0 8px 0', fontWeight: 600, color: '#111827' }}>{data.date}</p>
+                          <p style={{ margin: '4px 0', color: '#10b981', fontSize: '14px' }}>
+                            Assets: <strong>AED {data.assets.toLocaleString()}</strong>
+                          </p>
+                          <p style={{ margin: '4px 0', color: '#ef4444', fontSize: '14px' }}>
+                            Liabilities: <strong>AED {data.debt.toLocaleString()}</strong>
+                          </p>
+                          <p style={{ margin: '8px 0 0 0', color: '#667eea', fontSize: '14px', fontWeight: 600 }}>
+                            Net Worth: <strong>AED {data.netWorth.toLocaleString()}</strong>
+                          </p>
+                        </div>
+                      );
+                    }
+                    return null;
+                  }}
                 />
                 <Area 
                   type="monotone" 

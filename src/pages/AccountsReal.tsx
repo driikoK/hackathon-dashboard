@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import accountsData from '../db/accounts-real.json';
+import transactionsData from '../db/transactions-real.json';
 import UseCasesIntro from '../components/UseCasesIntro';
 import './Accounts.css';
 
@@ -158,28 +159,76 @@ const AccountsReal = () => {
     }
   };
 
-  // Mock net worth history for the chart - Last 6 months (daily data points)
+  // Calculate real net worth history based on actual transactions
   const generateDailyNetWorthHistory = () => {
     const history = [];
     const startDate = new Date('2025-05-13');
     const endDate = new Date('2025-11-13');
     const totalDays = Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
     
-    for (let i = 0; i <= totalDays; i++) {
+    // Get current balances for each account
+    const currentBalances = new Map<number, number>();
+    accounts.forEach(acc => {
+      currentBalances.set(acc.id, parseFloat(acc.current_balance));
+    });
+    
+    // Get all transactions sorted by date (newest first)
+    const allTransactions = (transactionsData.data || [])
+      .filter((t: { accountId: number }) => includedAccounts.has(t.accountId))
+      .sort((a: { transactionDate: string }, b: { transactionDate: string }) => 
+        new Date(b.transactionDate).getTime() - new Date(a.transactionDate).getTime()
+      );
+    
+    // Calculate balance for each day going backwards from today
+    for (let i = totalDays; i >= 0; i--) {
       const currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + i);
+      currentDate.setHours(23, 59, 59, 999); // End of day
       
       const month = currentDate.toLocaleDateString('en-US', { month: 'short' });
       const day = currentDate.getDate();
       
-      const progress = i / totalDays;
-      const growthFactor = 0.82 + (progress * 0.18); // From 0.82 to 1.00
+      // Calculate what the balance was on this date by working backwards from current balance
+      const balancesOnDate = new Map(currentBalances);
       
-      history.push({
+      // Subtract all transactions that happened AFTER this date
+      allTransactions.forEach((t: { transactionDate: string; accountId: number; type: string; amount: string }) => {
+        const transactionDate = new Date(t.transactionDate);
+        if (transactionDate > currentDate) {
+          const accountId = t.accountId;
+          const amount = parseFloat(t.amount);
+          const currentBalance = balancesOnDate.get(accountId) || 0;
+          
+          // Reverse the transaction: subtract income, add back expenses
+          if (t.type === 'INCOME') {
+            balancesOnDate.set(accountId, currentBalance - amount);
+          } else {
+            balancesOnDate.set(accountId, currentBalance + Math.abs(amount));
+          }
+        }
+      });
+      
+      // Calculate total assets and debt for this date
+      let assetsOnDate = 0;
+      let debtOnDate = 0;
+      
+      balancesOnDate.forEach((balance, accountId) => {
+        if (includedAccounts.has(accountId)) {
+          if (balance >= 0) {
+            assetsOnDate += balance;
+          } else {
+            debtOnDate += Math.abs(balance);
+          }
+        }
+      });
+      
+      const networthOnDate = assetsOnDate - debtOnDate;
+      
+      history.unshift({
         date: `${month} ${day}`,
-        netWorth: totalNetworth * growthFactor,
-        assets: stats.totalAssets * (0.80 + progress * 0.20),
-        debt: stats.totalLiabilities * (0.85 + progress * 0.15)
+        netWorth: networthOnDate,
+        assets: assetsOnDate,
+        debt: debtOnDate
       });
     }
     
@@ -320,15 +369,19 @@ const AccountsReal = () => {
                   type="linear" 
                   dataKey="assets" 
                   stroke="#10b981" 
-                  strokeWidth={2}
-                  fill="url(#colorAssets)" 
+                  strokeWidth={0}
+                  fill="transparent"
+                  strokeOpacity={0}
+                  fillOpacity={0}
                 />
                 <Area 
                   type="linear" 
                   dataKey="debt" 
                   stroke="#ef4444" 
-                  strokeWidth={2}
-                  fill="url(#colorDebt)" 
+                  strokeWidth={0}
+                  fill="transparent"
+                  strokeOpacity={0}
+                  fillOpacity={0}
                 />
                 <Area 
                   type="linear" 

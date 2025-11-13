@@ -70,6 +70,55 @@
   opacity: 0.9;
 }
 
+.back-button-modern {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.back-button-modern:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(-4px);
+}
+
+.calendar-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: white;
+  border: none;
+  border-radius: 14px;
+  color: #667eea;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  margin-top: 24px;
+}
+
+.calendar-view-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.calendar-view-btn svg {
+  stroke: currentColor;
+}
+
 .recurring-content {
   max-width: 1400px;
   margin: 0 auto;
@@ -116,6 +165,7 @@
 
 .payments-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   gap: 20px;
 }
 
