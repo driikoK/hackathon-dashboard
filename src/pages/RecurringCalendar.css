@@ -363,7 +363,7 @@
   white-space: nowrap;
 }
 
-.calendar-payment-meta {nt-meta {
+.calendar-payment-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
