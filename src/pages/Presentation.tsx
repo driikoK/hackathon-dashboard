@@ -513,7 +513,6 @@ const Presentation = () => {
                   <thead>
                     <tr>
                       <th className="input-column">Raw Description (Input)</th>
-                      <th className="output-column">Amount</th>
                       <th className="output-column">Cleaned Description</th>
                       <th className="output-column">Category</th>
                       <th className="output-column">Subcategory</th>
@@ -524,7 +523,6 @@ const Presentation = () => {
                   <tbody>
                     <tr>
                       <td className="input-cell">CARD TRANSACTION 07AUG25 V DEBIT 006837AED 49.00 Card Ending with 4004 Netflix.com A89517135</td>
-                      <td className="output-cell">-49.00 AED</td>
                       <td className="output-cell">Netflix.com</td>
                       <td className="output-cell">Bills / Utilities</td>
                       <td className="output-cell">Cable</td>
@@ -533,7 +531,6 @@ const Presentation = () => {
                     </tr>
                     <tr>
                       <td className="input-cell">Visa Purchase : 259 0829 706956 LULUHYPERMARKET QUSAIS AED DUBAI AED 5 0829</td>
-                      <td className="output-cell">-308.50 AED</td>
                       <td className="output-cell">Lulu Hypermarket - Qusais</td>
                       <td className="output-cell">Food & Dining</td>
                       <td className="output-cell">Groceries</td>
@@ -542,7 +539,6 @@ const Presentation = () => {
                     </tr>
                     <tr>
                       <td className="input-cell">PUR 30/08 DUBAI ELEC DUBAI 1514</td>
-                      <td className="output-cell">-419.90 AED</td>
                       <td className="output-cell">Dubai Electricity</td>
                       <td className="output-cell">Bills / Utilities</td>
                       <td className="output-cell">Electricity & Water</td>
@@ -551,7 +547,6 @@ const Presentation = () => {
                     </tr>
                     <tr>
                       <td className="input-cell">ETIHAD AIRW 6072412674870 ABU DHABI</td>
-                      <td className="output-cell">-8,624.19 AED</td>
                       <td className="output-cell">Etihad Airways</td>
                       <td className="output-cell">Travel</td>
                       <td className="output-cell">Airline Tickets</td>
@@ -560,7 +555,6 @@ const Presentation = () => {
                     </tr>
                     <tr>
                       <td className="input-cell">Visa Purchase : 259 0829 737761 MCDONALDS-AL BUSTAN CN AED DUBAI AED 28 0829</td>
-                      <td className="output-cell">-28.00 AED</td>
                       <td className="output-cell">McDonald's - Al Bustan</td>
                       <td className="output-cell">Food & Dining</td>
                       <td className="output-cell">Fast Food</td>
